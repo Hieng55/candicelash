@@ -29,6 +29,52 @@ const isValidUsDate = (value) => {
   return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day && date <= today;
 };
 
+const formatDateInput = (value) => {
+  const digits = value.replace(/\D/g, "").slice(0, 8);
+
+  if (digits.length >= 4) return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+  if (digits.length >= 2) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+  return digits;
+};
+
+const getDateError = (value, requireComplete = false) => {
+  const digits = value.replace(/\D/g, "");
+
+  if (digits.length >= 2) {
+    const month = Number(digits.slice(0, 2));
+    if (month < 1 || month > 12) return "Month must be between 01 and 12.";
+  }
+
+  if (digits.length >= 4) {
+    const month = Number(digits.slice(0, 2));
+    const day = Number(digits.slice(2, 4));
+    const daysInMonth = new Date(2024, month, 0).getDate();
+    if (day < 1 || day > daysInMonth) return "Enter a valid day for this month.";
+  }
+
+  if (requireComplete && digits.length !== 8) return "Enter all 8 digits in MM/DD/YYYY format.";
+  if (digits.length === 8 && !isValidUsDate(formatDateInput(digits))) return "Enter a valid date that is not in the future.";
+  return "";
+};
+
+const formatPhoneInput = (value) => {
+  let digits = value.replace(/\D/g, "");
+  if (digits.length > 10 && digits.startsWith("1")) digits = digits.slice(1);
+  digits = digits.slice(0, 10);
+
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+};
+
+const getPhoneError = (value, requireComplete = false) => {
+  const digits = value.replace(/\D/g, "");
+  if ((requireComplete || digits.length >= 10) && digits.length !== 10) return "Enter a 10-digit phone number.";
+  return "";
+};
+
+const invalidInputClass = "border-[#FF8F80] focus:border-[#FF8F80] focus:ring-[#FF8F80]/15";
+
 function YesNoQuestion({ name, question }) {
   return (
     <fieldset className="rounded-[18px] border border-white/10 bg-white/[0.045] p-4">
@@ -54,16 +100,32 @@ function YesNoQuestion({ name, question }) {
 export default function PMUIntakeForm() {
   const [submitState, setSubmitState] = useState("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  const updateFieldError = (name, message) => {
+    setFieldErrors((current) => ({ ...current, [name]: message }));
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
     const dateOfBirthInput = form.elements.namedItem("dateOfBirth");
+    const phoneInput = form.elements.namedItem("phone");
+    const dateError = dateOfBirthInput instanceof HTMLInputElement ? getDateError(dateOfBirthInput.value, true) : "";
+    const phoneError = phoneInput instanceof HTMLInputElement ? getPhoneError(phoneInput.value, true) : "";
 
-    if (dateOfBirthInput instanceof HTMLInputElement && !isValidUsDate(dateOfBirthInput.value)) {
-      dateOfBirthInput.setCustomValidity("Enter a valid date in MM/DD/YYYY format.");
+    updateFieldError("dateOfBirth", dateError);
+    updateFieldError("phone", phoneError);
+
+    if (dateError && dateOfBirthInput instanceof HTMLInputElement) {
+      dateOfBirthInput.setCustomValidity(dateError);
       dateOfBirthInput.reportValidity();
-      dateOfBirthInput.focus();
+      return;
+    }
+
+    if (phoneError && phoneInput instanceof HTMLInputElement) {
+      phoneInput.setCustomValidity(phoneError);
+      phoneInput.reportValidity();
       return;
     }
 
@@ -90,6 +152,7 @@ export default function PMUIntakeForm() {
       }
 
       form.reset();
+      setFieldErrors({});
       setSubmitState("success");
       setSubmitMessage("Thank you. Your PMU intake form was sent to Candice Beauty Studio.");
     } catch (error) {
@@ -142,7 +205,7 @@ export default function PMUIntakeForm() {
                 <label className={labelClass}>
                   Date of birth (MM/DD/YYYY) <span aria-hidden="true">*</span>
                   <input
-                    className={inputClass}
+                    className={`${inputClass} ${fieldErrors.dateOfBirth ? invalidInputClass : ""}`}
                     type="text"
                     name="dateOfBirth"
                     autoComplete="bday"
@@ -152,13 +215,51 @@ export default function PMUIntakeForm() {
                     pattern="(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/[0-9]{4}"
                     placeholder="MM/DD/YYYY"
                     title="Enter the date as MM/DD/YYYY, for example 04/25/1995."
-                    onInput={(event) => event.currentTarget.setCustomValidity("")}
-                    onBlur={(event) => event.currentTarget.setCustomValidity(isValidUsDate(event.currentTarget.value) ? "" : "Enter a valid date in MM/DD/YYYY format.")}
+                    aria-invalid={Boolean(fieldErrors.dateOfBirth)}
+                    aria-describedby={fieldErrors.dateOfBirth ? "dateOfBirth-error" : undefined}
+                    onInput={(event) => {
+                      const input = event.currentTarget;
+                      input.value = formatDateInput(input.value);
+                      const error = getDateError(input.value);
+                      input.setCustomValidity(error);
+                      updateFieldError("dateOfBirth", error);
+                    }}
+                    onBlur={(event) => {
+                      const error = getDateError(event.currentTarget.value, true);
+                      event.currentTarget.setCustomValidity(error);
+                      updateFieldError("dateOfBirth", error);
+                    }}
                   />
+                  {fieldErrors.dateOfBirth && <span id="dateOfBirth-error" role="alert" className="mt-2 block text-[12px] normal-case tracking-normal text-[#FFB4A8]">{fieldErrors.dateOfBirth}</span>}
                 </label>
                 <label className={labelClass}>
                   Phone number <span aria-hidden="true">*</span>
-                  <input className={inputClass} type="tel" name="phone" autoComplete="tel" inputMode="tel" required minLength={7} maxLength={24} pattern="[0-9+().\-\s]{7,24}" title="Enter a valid phone number." placeholder="(000) 000-0000" />
+                  <input
+                    className={`${inputClass} ${fieldErrors.phone ? invalidInputClass : ""}`}
+                    type="tel"
+                    name="phone"
+                    autoComplete="tel"
+                    inputMode="numeric"
+                    required
+                    maxLength={14}
+                    placeholder="(000) 000-0000"
+                    title="Enter a 10-digit phone number."
+                    aria-invalid={Boolean(fieldErrors.phone)}
+                    aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
+                    onInput={(event) => {
+                      const input = event.currentTarget;
+                      input.value = formatPhoneInput(input.value);
+                      const error = getPhoneError(input.value);
+                      input.setCustomValidity(error);
+                      updateFieldError("phone", error);
+                    }}
+                    onBlur={(event) => {
+                      const error = getPhoneError(event.currentTarget.value, true);
+                      event.currentTarget.setCustomValidity(error);
+                      updateFieldError("phone", error);
+                    }}
+                  />
+                  {fieldErrors.phone && <span id="phone-error" role="alert" className="mt-2 block text-[12px] normal-case tracking-normal text-[#FFB4A8]">{fieldErrors.phone}</span>}
                 </label>
                 <label className={labelClass}>
                   Email address <span aria-hidden="true">*</span>

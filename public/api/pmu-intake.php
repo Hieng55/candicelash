@@ -84,8 +84,12 @@ if ($invalidDate) {
     respond(422, false, 'Please enter a valid date of birth in MM/DD/YYYY format.');
 }
 
-if (!preg_match('/^[0-9+().\-\s]{7,24}$/', $values['phone'])) {
-    respond(422, false, 'Please enter a valid phone number.');
+$phoneDigits = preg_replace('/\D+/', '', $values['phone']) ?? '';
+if (strlen($phoneDigits) === 11 && substr($phoneDigits, 0, 1) === '1') {
+    $phoneDigits = substr($phoneDigits, 1);
+}
+if (strlen($phoneDigits) !== 10) {
+    respond(422, false, 'Please enter a valid 10-digit phone number.');
 }
 
 $allowedServices = ['Powder / Ombre Brows', 'Nano Brows', 'Lip Blush', 'Eyeliner', 'Other'];

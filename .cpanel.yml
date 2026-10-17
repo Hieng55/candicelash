@@ -5,3 +5,6 @@ deployment:
     - /bin/mkdir -p "$DEPLOYPATH"
     - /bin/rm -rf "$DEPLOYPATH/_next"
     - /bin/cp -R out/. "$DEPLOYPATH"
+    - /bin/mkdir -p "$DEPLOYPATH/api"
+    - /bin/cp public/api/pmu-intake.php "$DEPLOYPATH/api/pmu-intake.php"
+    - /bin/chmod 0644 "$DEPLOYPATH/api/pmu-intake.php"

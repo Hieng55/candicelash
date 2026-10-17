@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 const inputClass =
   "mt-2 w-full rounded-[16px] border border-[#E9C579]/20 bg-white/[0.07] px-4 py-3.5 text-[15px] text-[#FFF9EB] outline-none transition placeholder:text-[#F7EED7]/32 focus:border-[#E9C579]/65 focus:bg-white/[0.1] focus:ring-2 focus:ring-[#E9C579]/10";
 
@@ -36,6 +38,43 @@ function YesNoQuestion({ name, question }) {
 }
 
 export default function PMUIntakeForm() {
+  const [submitState, setSubmitState] = useState("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    payload.informationAccurate = formData.has("informationAccurate");
+    payload.artistReview = formData.has("artistReview");
+    payload.contactConsent = formData.has("contactConsent");
+
+    setSubmitState("submitting");
+    setSubmitMessage("");
+
+    try {
+      const response = await fetch("/api/pmu-intake.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || "We could not send your form. Please try again.");
+      }
+
+      form.reset();
+      setSubmitState("success");
+      setSubmitMessage("Thank you. Your PMU intake form was sent to Candice Beauty Studio.");
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitMessage(error.message || "We could not send your form. Please try again or call the studio.");
+    }
+  };
+
   return (
     <div id="pmu-intake" className="relative overflow-hidden bg-[#351A07] text-[#F7EED7]">
       <div className="pointer-events-none absolute -left-40 top-20 h-[430px] w-[430px] rounded-full bg-[#DAA755]/10 blur-[120px]" aria-hidden="true" />
@@ -64,7 +103,11 @@ export default function PMUIntakeForm() {
             </div>
           </div>
 
-          <form className="rounded-[30px] border border-white/12 bg-[#261005]/78 p-5 shadow-[0_28px_80px_rgba(12,5,1,0.28)] sm:p-8 lg:p-10" onSubmit={(event) => event.preventDefault()}>
+          <form className="rounded-[30px] border border-white/12 bg-[#261005]/78 p-5 shadow-[0_28px_80px_rgba(12,5,1,0.28)] sm:p-8 lg:p-10" onSubmit={handleSubmit}>
+            <label className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+              Company website
+              <input type="text" name="companyWebsite" tabIndex={-1} autoComplete="off" />
+            </label>
             <fieldset>
               <legend className="font-forum text-[29px] text-[#FFF9EB]">Your information</legend>
               <div className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -144,11 +187,11 @@ export default function PMUIntakeForm() {
             </fieldset>
 
             <div className="mt-8 rounded-[20px] border border-[#E9C579]/25 bg-[#E9C579]/[0.08] p-5">
-              <button type="submit" disabled className="flex w-full cursor-not-allowed items-center justify-center rounded-full bg-[#E9C579]/45 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#351A07]/70" aria-describedby="telegram-pending">
-                Submit form — Telegram setup pending
+              <button type="submit" disabled={submitState === "submitting"} className="flex w-full items-center justify-center rounded-full bg-[#E9C579] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#351A07] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F1DEA8] disabled:cursor-wait disabled:opacity-55 disabled:hover:translate-y-0" aria-describedby="pmu-submit-status">
+                {submitState === "submitting" ? "Sending securely…" : "Submit PMU intake form"}
               </button>
-              <p id="telegram-pending" className="mt-3 text-center text-[12px] leading-5 text-[#F7EED7]/50">
-                The form layout is ready. Submission will be enabled after the private Telegram bot is connected.
+              <p id="pmu-submit-status" role="status" aria-live="polite" className={`mt-3 text-center text-[12px] leading-5 ${submitState === "error" ? "text-[#FFB4A8]" : submitState === "success" ? "text-[#F1DEA8]" : "text-[#F7EED7]/50"}`}>
+                {submitMessage || "Your answers will be sent directly to Candice Beauty Studio."}
               </p>
             </div>
           </form>

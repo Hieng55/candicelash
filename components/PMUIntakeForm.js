@@ -190,10 +190,6 @@ export default function PMUIntakeForm() {
           </div>
 
           <form className="rounded-[30px] border border-white/12 bg-[#261005]/78 p-5 shadow-[0_28px_80px_rgba(12,5,1,0.28)] sm:p-8 lg:p-10" onSubmit={handleSubmit}>
-            <label className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
-              Company website
-              <input type="text" name="companyWebsite" tabIndex={-1} autoComplete="off" />
-            </label>
             <fieldset>
               <legend className="font-forum text-[29px] text-[#FFF9EB]">Your information</legend>
               <p className="mt-2 text-[12px] text-[#F7EED7]/48"><span className="text-[#E9C579]">*</span> Required field</p>

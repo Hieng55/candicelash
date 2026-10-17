@@ -33,10 +33,6 @@ if (!is_array($data)) {
     respond(400, false, 'Invalid form data.');
 }
 
-if (trim((string) ($data['companyWebsite'] ?? '')) !== '') {
-    respond(200, true, 'Thank you.');
-}
-
 $clientIp = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $rateFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'candice-pmu-' . hash('sha256', $clientIp);
 $lastRequest = is_file($rateFile) ? (int) file_get_contents($rateFile) : 0;

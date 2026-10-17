@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import PMUIntakeForm from "@/components/PMUIntakeForm";
 
 const bookingUrl = "https://www.nailzy.com/book/candicelashandbrows";
 const directionsUrl = "https://maps.google.com/?cid=791661076391546862";
@@ -103,6 +104,8 @@ export default function Contact() {
           </a>
         </div>
       </div>
+
+      <PMUIntakeForm />
 
     </section>
   );

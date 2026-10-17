@@ -77,7 +77,7 @@ export default function Policy() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 lg:mt-16 lg:grid-cols-2 lg:gap-7">
+        <div className="mt-14 grid items-start gap-5 lg:mt-16 lg:grid-cols-2 lg:gap-7">
           <article className="rounded-[30px] border border-[#9F6920]/18 bg-white/65 p-6 shadow-[0_22px_60px_rgba(70,37,6,0.08)] sm:p-9 lg:p-10">
             <PolicyHeading number="01" eyebrow="Permanent makeup" title="PMU pre-care policy" />
             <PolicyList items={pmuPreCare} />

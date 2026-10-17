@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import studioImage from "@/images/about us/Luxe Candice Lash Studio Retreat.png";
+import studioImage from "@/images/about us/Luxe Candice Lash Studio Retreat.webp";
 import portraitImage from "@/images/about us/avatar.jpg";
 import candiceLogo from "@/images/logo candice@3x.png";
 

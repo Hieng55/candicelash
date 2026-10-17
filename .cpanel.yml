@@ -2,4 +2,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/candice/public_html/
+    - /bin/rm -rf /home/candice/public_html/_next
     - /bin/cp -R out/. $DEPLOYPATH

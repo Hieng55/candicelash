@@ -1,11 +1,18 @@
 import Image from "next/image";
 import ServiceMenu from "@/components/ServiceMenu";
 import Footer from "@/components/Footer";
-import heroImage from "@/images/services/lash service.jpg";
+import heroImage from "@/images/services/lash service.webp";
 
 export const metadata = {
-  title: "Services & Pricing | Candice Lash & Brow",
+  title: "Lash, Brow & PMU Services and Pricing",
   description: "Explore lash, brow, and permanent makeup services and pricing at Candice Beauty Studio in Alexandria, Virginia.",
+  alternates: { canonical: "/services/" },
+  openGraph: {
+    title: "Lash, Brow & PMU Services and Pricing",
+    description: "Explore lash, brow, and permanent makeup services and pricing at Candice Beauty Studio in Alexandria, Virginia.",
+    url: "/services/",
+    images: ["/opengraph-image.jpg"],
+  },
 };
 
 export default function ServicesPage() {

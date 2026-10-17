@@ -2,13 +2,20 @@ import Contact from "@/components/Contact";
 import SectionPage from "@/components/SectionPage";
 
 export const metadata = {
-  title: "Contact & Visit | Candice Lash & Brow",
+  title: "Contact & Visit",
   description: "Contact Candice Beauty Studio, view studio hours, and get directions to our Alexandria location.",
+  alternates: { canonical: "/contact/" },
+  openGraph: {
+    title: "Contact & Visit",
+    description: "Contact Candice Beauty Studio, view studio hours, and get directions to our Alexandria location.",
+    url: "/contact/",
+    images: ["/opengraph-image.jpg"],
+  },
 };
 
 export default function ContactPage() {
   return (
-    <SectionPage>
+    <SectionPage title="Contact Candice Lash and Brows">
       <Contact />
     </SectionPage>
   );

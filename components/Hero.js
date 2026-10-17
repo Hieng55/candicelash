@@ -5,12 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import glowPortrait from "@/images/banner/Golden Glow Beauty Portrait.png";
-import hourPortrait from "@/images/banner/Golden Hour Beauty Portrait.png";
-import heroPortrait from "@/images/banner/lash-brow-hero.png";
-import browTreatment from "@/images/banner/beautician-hand-doing-eyebrow-tattooing-female-brows-closeup-shot.jpg";
-import lashTreatment from "@/images/banner/closeup-female-eye-tweezers-eyelash-extension.jpg";
-import lashDetail from "@/images/banner/eyelash-extension-procedure-woman-s-eye-with-long-eyelashes-eyelashes-close-up-macro-selective-focus-tweezers-beautiful-girl-eyelash-extension-procedure.jpg";
+import glowPortrait from "@/images/banner/Golden Glow Beauty Portrait.webp";
+import hourPortrait from "@/images/banner/Golden Hour Beauty Portrait.webp";
+import heroPortrait from "@/images/banner/lash-brow-hero.webp";
+import browTreatment from "@/images/banner/beautician-hand-doing-eyebrow-tattooing-female-brows-closeup-shot.webp";
+import lashTreatment from "@/images/banner/closeup-female-eye-tweezers-eyelash-extension.webp";
+import lashDetail from "@/images/banner/eyelash-extension-procedure-woman-s-eye-with-long-eyelashes-eyelashes-close-up-macro-selective-focus-tweezers-beautiful-girl-eyelash-extension-procedure.webp";
 import candiceLogo from "@/images/logo candice@3x.png";
 
 const slides = [

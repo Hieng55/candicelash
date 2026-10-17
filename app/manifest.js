@@ -1,0 +1,20 @@
+export const dynamic = "force-static";
+
+export default function manifest() {
+  return {
+    name: "Candice Lash & Brows",
+    short_name: "Candice Beauty",
+    description: "Luxury lash, brow, and permanent makeup artistry in Alexandria, Virginia.",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#351A07",
+    theme_color: "#351A07",
+    icons: [
+      {
+        src: "/icon.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+  };
+}

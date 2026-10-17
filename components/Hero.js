@@ -15,17 +15,6 @@ import candiceLogo from "@/images/logo candice@3x.png";
 
 const slides = [
   {
-    background: glowPortrait,
-    insetImage: lashDetail,
-    eyebrow: "Candice Beauty Studio",
-    title: "Defined Beauty,",
-    accent: "Soft Luxury",
-    description: "Discover bespoke lash and brow artistry where graceful detail, modern technique, and your natural beauty come together.",
-    services: "Lashes · Brows · Permanent Makeup",
-    backgroundPosition: "62% center",
-    insetPosition: "50% center",
-  },
-  {
     background: hourPortrait,
     insetImage: browTreatment,
     eyebrow: "Bespoke Brow Artistry",
@@ -34,6 +23,17 @@ const slides = [
     description: "Personalized brow treatments designed to balance your features and enhance the beauty that is already yours.",
     services: "Brow Mapping · Tinting · Permanent Makeup",
     backgroundPosition: "64% center",
+    insetPosition: "50% center",
+  },
+  {
+    background: glowPortrait,
+    insetImage: lashDetail,
+    eyebrow: "Candice Beauty Studio",
+    title: "Defined Beauty,",
+    accent: "Soft Luxury",
+    description: "Discover bespoke lash and brow artistry where graceful detail, modern technique, and your natural beauty come together.",
+    services: "Lashes · Brows · Permanent Makeup",
+    backgroundPosition: "62% center",
     insetPosition: "50% center",
   },
   {

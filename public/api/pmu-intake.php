@@ -73,6 +73,17 @@ if (!filter_var($values['email'], FILTER_VALIDATE_EMAIL)) {
     respond(422, false, 'Please enter a valid email address.');
 }
 
+$dateOfBirth = DateTimeImmutable::createFromFormat('!m/d/Y', $values['dateOfBirth']);
+$dateErrors = DateTimeImmutable::getLastErrors();
+$invalidDate = $dateOfBirth === false
+    || ($dateErrors !== false && ($dateErrors['warning_count'] > 0 || $dateErrors['error_count'] > 0))
+    || $dateOfBirth->format('m/d/Y') !== $values['dateOfBirth']
+    || $dateOfBirth > new DateTimeImmutable('today');
+
+if ($invalidDate) {
+    respond(422, false, 'Please enter a valid date of birth in MM/DD/YYYY format.');
+}
+
 if (!preg_match('/^[0-9+().\-\s]{7,24}$/', $values['phone'])) {
     respond(422, false, 'Please enter a valid phone number.');
 }
@@ -96,6 +107,10 @@ foreach (['informationAccurate', 'artistReview', 'contactConsent'] as $consent) 
 
 $allergies = cleanValue($data, 'allergies', 800);
 $medicalDetails = cleanValue($data, 'medicalDetails', 800);
+
+if (mb_strlen($allergies) < 2 || mb_strlen($medicalDetails) < 2) {
+    respond(422, false, 'Please complete the allergy and medical information fields. Enter None if not applicable.');
+}
 
 $configPath = dirname((string) ($_SERVER['DOCUMENT_ROOT'] ?? __DIR__), 1) . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'candice-telegram.php';
 $config = is_file($configPath) ? require $configPath : [];

@@ -15,6 +15,20 @@ const yesNoQuestions = [
   ["recentTreatment", "Have you had Botox, fillers, peels, or laser treatment recently?"],
 ];
 
+const isValidUsDate = (value) => {
+  const match = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/(\d{4})$/.exec(value);
+  if (!match) return false;
+
+  const month = Number(match[1]);
+  const day = Number(match[2]);
+  const year = Number(match[3]);
+  const date = new Date(year, month - 1, day);
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
+
+  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day && date <= today;
+};
+
 function YesNoQuestion({ name, question }) {
   return (
     <fieldset className="rounded-[18px] border border-white/10 bg-white/[0.045] p-4">
@@ -44,6 +58,15 @@ export default function PMUIntakeForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    const dateOfBirthInput = form.elements.namedItem("dateOfBirth");
+
+    if (dateOfBirthInput instanceof HTMLInputElement && !isValidUsDate(dateOfBirthInput.value)) {
+      dateOfBirthInput.setCustomValidity("Enter a valid date in MM/DD/YYYY format.");
+      dateOfBirthInput.reportValidity();
+      dateOfBirthInput.focus();
+      return;
+    }
+
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
 
@@ -110,22 +133,36 @@ export default function PMUIntakeForm() {
             </label>
             <fieldset>
               <legend className="font-forum text-[29px] text-[#FFF9EB]">Your information</legend>
+              <p className="mt-2 text-[12px] text-[#F7EED7]/48"><span className="text-[#E9C579]">*</span> Required field</p>
               <div className="mt-6 grid gap-5 sm:grid-cols-2">
                 <label className={`${labelClass} sm:col-span-2`}>
                   Full name <span aria-hidden="true">*</span>
-                  <input className={inputClass} type="text" name="fullName" autoComplete="name" required placeholder="Your full name" />
+                  <input className={inputClass} type="text" name="fullName" autoComplete="name" required minLength={2} maxLength={120} placeholder="Your full name" />
                 </label>
                 <label className={labelClass}>
-                  Date of birth <span aria-hidden="true">*</span>
-                  <input className={inputClass} type="date" name="dateOfBirth" autoComplete="bday" required />
+                  Date of birth (MM/DD/YYYY) <span aria-hidden="true">*</span>
+                  <input
+                    className={inputClass}
+                    type="text"
+                    name="dateOfBirth"
+                    autoComplete="bday"
+                    inputMode="numeric"
+                    required
+                    maxLength={10}
+                    pattern="(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/[0-9]{4}"
+                    placeholder="MM/DD/YYYY"
+                    title="Enter the date as MM/DD/YYYY, for example 04/25/1995."
+                    onInput={(event) => event.currentTarget.setCustomValidity("")}
+                    onBlur={(event) => event.currentTarget.setCustomValidity(isValidUsDate(event.currentTarget.value) ? "" : "Enter a valid date in MM/DD/YYYY format.")}
+                  />
                 </label>
                 <label className={labelClass}>
                   Phone number <span aria-hidden="true">*</span>
-                  <input className={inputClass} type="tel" name="phone" autoComplete="tel" required placeholder="(000) 000-0000" />
+                  <input className={inputClass} type="tel" name="phone" autoComplete="tel" inputMode="tel" required minLength={7} maxLength={24} pattern="[0-9+().\-\s]{7,24}" title="Enter a valid phone number." placeholder="(000) 000-0000" />
                 </label>
                 <label className={labelClass}>
                   Email address <span aria-hidden="true">*</span>
-                  <input className={inputClass} type="email" name="email" autoComplete="email" required placeholder="you@example.com" />
+                  <input className={inputClass} type="email" name="email" autoComplete="email" required maxLength={180} placeholder="you@example.com" />
                 </label>
                 <label className={labelClass}>
                   PMU service <span aria-hidden="true">*</span>
@@ -153,12 +190,12 @@ export default function PMUIntakeForm() {
 
               <div className="mt-5 grid gap-5">
                 <label className={labelClass}>
-                  Allergies or skin sensitivities
-                  <textarea className={`${inputClass} min-h-28 resize-y`} name="allergies" placeholder="List any allergies, sensitivities, or reactions. Write None if not applicable." />
+                  Allergies or skin sensitivities <span aria-hidden="true">*</span>
+                  <textarea className={`${inputClass} min-h-28 resize-y`} name="allergies" required minLength={2} maxLength={800} placeholder="List any allergies, sensitivities, or reactions. Write None if not applicable." />
                 </label>
                 <label className={labelClass}>
-                  Medical conditions and current medications
-                  <textarea className={`${inputClass} min-h-28 resize-y`} name="medicalDetails" placeholder="Include relevant medical conditions, medications, or anything your artist should know." />
+                  Medical conditions and current medications <span aria-hidden="true">*</span>
+                  <textarea className={`${inputClass} min-h-28 resize-y`} name="medicalDetails" required minLength={2} maxLength={800} placeholder="Include relevant conditions and medications. Write None if not applicable." />
                 </label>
               </div>
             </fieldset>
@@ -182,7 +219,7 @@ export default function PMUIntakeForm() {
 
               <label className={`${labelClass} mt-6`}>
                 Type your full name as acknowledgment <span aria-hidden="true">*</span>
-                <input className={inputClass} type="text" name="typedSignature" required placeholder="Full legal name" />
+                <input className={inputClass} type="text" name="typedSignature" required minLength={2} maxLength={120} placeholder="Full legal name" />
               </label>
             </fieldset>
 

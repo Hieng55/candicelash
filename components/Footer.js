@@ -5,6 +5,7 @@ const pageLinks = [
   ["Home", "/"],
   ["About us", "/about"],
   ["Services", "/services"],
+  ["Policy", "/policy"],
   ["Gallery", "/gallery"],
   ["Reviews", "/reviews"],
   ["Contact", "/contact"],

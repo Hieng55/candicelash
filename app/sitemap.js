@@ -6,6 +6,7 @@ const pages = [
   ["", "weekly", 1],
   ["/about/", "monthly", 0.8],
   ["/services/", "weekly", 0.9],
+  ["/policy/", "monthly", 0.8],
   ["/gallery/", "weekly", 0.8],
   ["/reviews/", "monthly", 0.7],
   ["/contact/", "monthly", 0.8],

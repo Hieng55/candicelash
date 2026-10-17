@@ -12,6 +12,7 @@ const leftNavigation = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Policy", href: "/policy" },
 ];
 
 const rightNavigation = [

@@ -174,7 +174,7 @@ export default function Hero() {
         if (Math.abs(distance) > 50) moveSlide(distance < 0 ? 1 : -1);
         touchStartRef.current = null;
       }}
-      className="relative min-h-[860px] touch-pan-y overflow-hidden bg-[#462506] text-[#F1DEA8] lg:min-h-screen"
+      className="relative min-h-[800px] touch-pan-y overflow-hidden bg-[#462506] text-[#F1DEA8] sm:min-h-[860px] lg:min-h-screen"
     >
       <div className="absolute inset-0 bg-[#462506]">
         {slides.map((slide, index) => (
@@ -201,8 +201,8 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 z-[3] bg-[linear-gradient(90deg,rgba(20,10,4,0.94)_0%,rgba(34,16,5,0.78)_38%,rgba(70,37,6,0.18)_70%,rgba(20,10,4,0.36)_100%)]" />
       <div className="pointer-events-none absolute inset-0 z-[3] bg-[radial-gradient(circle_at_72%_38%,transparent_0%,rgba(25,12,5,0.08)_46%,rgba(16,8,3,0.5)_100%)]" />
 
-      <div className="relative z-10 mx-auto grid min-h-[860px] max-w-[1240px] grid-cols-1 items-center gap-10 px-5 pb-36 pt-32 sm:px-8 lg:min-h-screen lg:grid-cols-[1.06fr_0.94fr] lg:gap-16 lg:px-10 lg:pb-32 lg:pt-36">
-        <div ref={cardRef} data-hero-card className="relative max-w-[620px] overflow-hidden rounded-[30px] border border-white/35 bg-white/[0.14] px-7 py-10 text-[#F1DEA8] shadow-[0_30px_90px_rgba(20,9,2,0.36)] backdrop-blur-[22px] sm:px-11 sm:py-12 lg:px-12 lg:py-14">
+      <div className="relative z-10 mx-auto grid min-h-[800px] max-w-[1240px] grid-cols-1 items-center gap-10 px-5 pb-40 pt-28 sm:min-h-[860px] sm:px-8 sm:pb-44 sm:pt-32 lg:min-h-screen lg:grid-cols-[1.06fr_0.94fr] lg:gap-16 lg:px-10 lg:pb-32 lg:pt-36">
+        <div ref={cardRef} data-hero-card className="relative max-w-[620px] overflow-hidden rounded-[28px] border border-white/35 bg-white/[0.14] px-6 py-9 text-[#F1DEA8] shadow-[0_30px_90px_rgba(20,9,2,0.36)] backdrop-blur-[22px] sm:rounded-[32px] sm:px-10 sm:py-11 lg:px-12 lg:py-14">
           <span className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-white/[0.03] to-transparent" aria-hidden="true" />
           <span className="absolute -right-16 -top-20 h-48 w-48 rounded-full bg-white/[0.12]" aria-hidden="true" />
           <div>
@@ -211,17 +211,17 @@ export default function Hero() {
               <span className="shrink-0">{activeSlide.eyebrow}</span>
               <span className="luxury-line luxury-line-right" aria-hidden="true" />
             </div>
-            <h1 data-slide-copy className="relative font-forum text-[52px] leading-[0.94] sm:text-[70px] lg:text-[78px]">
+            <h1 data-slide-copy className="relative font-forum text-[48px] leading-[0.94] sm:text-[66px] lg:text-[78px]">
               {activeSlide.title}
               <span className="mt-2 block text-[#DAA755]">{activeSlide.accent}</span>
             </h1>
             <p data-slide-copy className="relative mt-7 max-w-[510px] text-[14px] leading-7 text-white/78 sm:text-[15px]">{activeSlide.description}</p>
-            <div data-slide-copy className="relative mt-8 flex flex-wrap gap-3">
-              <Link href="tel:+14026863390" className="luxury-button luxury-button-primary group" aria-label="Call Candice Beauty Studio at 402-686-3390">
+            <div data-slide-copy className="relative mt-8 grid gap-3 sm:flex sm:flex-wrap">
+              <Link href="tel:+14026863390" className="luxury-button luxury-button-primary group w-full sm:w-auto" aria-label="Call Candice Beauty Studio at 402-686-3390">
                 <span className="relative z-10">Call now</span>
                 <span className="luxury-button-icon relative z-10" aria-hidden="true">→</span>
               </Link>
-              <Link href="https://www.nailzy.com/book/candicelashandbrows" target="_blank" rel="noopener noreferrer" className="luxury-button luxury-button-secondary group">
+              <Link href="https://www.nailzy.com/book/candicelashandbrows" target="_blank" rel="noopener noreferrer" className="luxury-button luxury-button-secondary group w-full sm:w-auto">
                 <span className="relative z-10">Book now</span>
                 <span className="luxury-button-icon relative z-10" aria-hidden="true">→</span>
               </Link>
@@ -267,7 +267,7 @@ export default function Hero() {
         ))}
       </aside>
 
-      <div className="absolute inset-x-0 bottom-6 z-20 px-5 sm:px-8 lg:bottom-8 lg:px-10">
+      <div className="absolute inset-x-0 bottom-24 z-20 px-5 sm:px-8 lg:bottom-8 lg:px-10">
         <div className="mx-auto flex max-w-[1240px] items-end justify-between gap-6">
           <a href="https://maps.google.com/?cid=791661076391546862" target="_blank" rel="noopener noreferrer" data-bottom-item className="hidden max-w-[410px] items-center gap-4 rounded-[28px] border border-white/50 bg-[#F1DEA8]/90 py-2.5 pl-3 pr-6 text-[#462506] shadow-[0_12px_35px_rgba(20,9,2,0.22)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5 sm:flex" aria-label="View Candice Beauty Studio on Google Maps">
             <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[#9F6920]/20 bg-white shadow-[inset_0_0_0_2px_rgba(241,222,168,0.35)]">
@@ -285,7 +285,7 @@ export default function Hero() {
             </div>
           </a>
 
-          <div data-bottom-item className="ml-auto flex items-center gap-4 rounded-full border border-[#F1DEA8]/25 bg-[#462506]/60 p-2 pl-5 backdrop-blur-md">
+          <div data-bottom-item className="ml-auto flex w-full items-center justify-between gap-2 rounded-full border border-[#F1DEA8]/25 bg-[#462506]/70 p-2 pl-4 backdrop-blur-xl sm:w-auto sm:justify-start sm:gap-4 sm:pl-5">
             <button type="button" onClick={() => moveSlide(-1)} aria-label="Previous slide" className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#E9C579]">← Prev</button>
             <span className="h-6 w-px bg-[#F1DEA8]/25" />
             {slides.map((_, index) => (

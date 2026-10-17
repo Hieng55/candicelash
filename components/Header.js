@@ -3,25 +3,28 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import candiceLogo from "@/images/logo.png";
 
 const leftNavigation = [
-  { label: "Home", href: "#home" },
-  { label: "About us", href: "#about" },
-  { label: "Services", href: "#services" },
+  { label: "Home", href: "/" },
+  { label: "About us", href: "/about" },
+  { label: "Services", href: "/services" },
 ];
 
 const rightNavigation = [
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact us", href: "#contact" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Contact", href: "/contact" },
   { label: "Book now", href: "https://www.nailzy.com/book/candicelashandbrows", external: true },
 ];
 
 const navigation = [...leftNavigation, ...rightNavigation];
 
 export default function Header() {
+  const pathname = usePathname();
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const linksRef = useRef([]);
@@ -63,20 +66,25 @@ export default function Header() {
     { dependencies: [isOpen] },
   );
 
-  const renderLink = (item) => (
-    <Link
-      key={item.label}
-      href={item.href}
-      target={item.external ? "_blank" : undefined}
-      rel={item.external ? "noopener noreferrer" : undefined}
-      data-header-item
-      className={`nav-link relative py-3 text-[12px] font-medium uppercase tracking-[0.16em] transition-colors duration-300 hover:text-[#DAA755] ${
-        item.label === "Home" ? "text-[#DAA755]" : "text-[#F1DEA8]"
-      }`}
-    >
-      {item.label}
-    </Link>
-  );
+  const renderLink = (item) => {
+    const isActive = pathname === item.href;
+
+    return (
+      <Link
+        key={item.label}
+        href={item.href}
+        target={item.external ? "_blank" : undefined}
+        rel={item.external ? "noopener noreferrer" : undefined}
+        aria-current={isActive ? "page" : undefined}
+        data-header-item
+        className={`nav-link relative py-3 text-[12px] font-medium uppercase tracking-[0.16em] transition-colors duration-300 hover:text-[#DAA755] ${
+          isActive ? "nav-link-active text-[#DAA755]" : "text-[#F1DEA8]"
+        }`}
+      >
+        {item.label}
+      </Link>
+    );
+  };
 
   return (
     <header ref={headerRef} className="absolute inset-x-0 top-0 z-50 text-[#F1DEA8]">
@@ -86,7 +94,7 @@ export default function Header() {
         </nav>
 
         <Link
-          href="#home"
+          href="/"
           data-header-item
           className="relative z-[60] block h-[70px] w-[175px] justify-self-start lg:h-[86px] lg:w-[190px] lg:justify-self-center"
           aria-label="Candice Beauty Studio - Home"

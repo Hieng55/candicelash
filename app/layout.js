@@ -1,4 +1,6 @@
 import { Forum, Jost } from "next/font/google";
+import Header from "@/components/Header";
+import MobileDock from "@/components/MobileDock";
 import "./globals.css";
 
 const jost = Jost({
@@ -22,7 +24,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${jost.variable} ${forum.variable}`}>{children}</body>
+      <body className={`${jost.variable} ${forum.variable}`}>
+        <Header />
+        {children}
+        <MobileDock />
+      </body>
     </html>
   );
 }

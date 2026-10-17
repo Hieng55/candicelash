@@ -34,12 +34,12 @@ export default function AboutUs() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="relative overflow-hidden bg-[#F7EED7] py-24 text-[#462506] sm:py-28 lg:py-32">
+    <section id="about" ref={sectionRef} className="relative overflow-hidden bg-[#F7EED7] py-20 text-[#462506] sm:py-24 lg:py-32">
       <div className="pointer-events-none absolute -left-24 top-1/3 h-80 w-80 rounded-full bg-white/25 blur-[90px]" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-28 top-16 h-96 w-96 rounded-full bg-[#E9C579]/10 blur-[100px]" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-10">
-        <div className="grid items-start gap-20 lg:grid-cols-[1.04fr_0.96fr] lg:gap-24">
+        <div className="grid items-start gap-14 sm:gap-18 lg:grid-cols-[1.04fr_0.96fr] lg:gap-24">
           <div className="relative pb-20 sm:pb-24 lg:pt-3">
             <div className="absolute -left-3 -top-3 bottom-[84px] right-8 rounded-tl-[138px] rounded-tr-[20px] rounded-bl-[20px] rounded-br-[76px] border border-[#DAA755]/28 sm:rounded-tl-[198px]" aria-hidden="true" />
 
@@ -75,7 +75,7 @@ export default function AboutUs() {
               About Candice
             </div>
 
-            <h2 data-about-copy className="max-w-[560px] font-forum text-[48px] leading-[0.98] sm:text-[60px] lg:text-[68px]">
+            <h2 data-about-copy className="max-w-[560px] font-forum text-[44px] leading-[0.98] sm:text-[56px] lg:text-[68px]">
               Artistry shaped around you,
               <span className="mt-2 block italic text-[#9F6920]">with care in every detail.</span>
             </h2>

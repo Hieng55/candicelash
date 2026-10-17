@@ -6,18 +6,32 @@ const bookingUrl = "https://www.nailzy.com/book/candicelashandbrows";
 
 const categories = [
   {
+    name: "Permanent Makeup",
+    slug: "permanent-makeup",
+    eyebrow: "Long-lasting brow artistry",
+    services: [
+      ["Consultation", 0, 5, null, "Not sure which brow style is right for you? Schedule a virtual consultation or send us a clear photo of your brows and face. We’ll review your features, discuss your desired look, and recommend the best brow shape and style for you."],
+      ["Nano Hairstroke Brows", 750, 180, null, "A semi-permanent brow technique that creates fine, realistic hair-like strokes to mimic natural brow hairs. Each stroke follows the natural direction and shape of your brows for a soft, defined result."],
+      ["Ombré Brows / Shading Brows", 550, 180, null, "A semi-permanent technique that creates soft, powdery brows with a smooth gradient effect. It gives the appearance of filled-in brows while remaining natural and elegant, and is suitable for all skin types, including oily skin."],
+      ["Combo Brows · Hairstroke & Shading", 650, 180, null, "A combination of realistic hairstrokes and ombré shading for natural, defined, and long-lasting brows. This method blends individual strokes with added depth and dimension for a beautifully full result."],
+      ["6–8 Week Touch-up", 150, 60, null, "A follow-up appointment recommended 6–8 weeks after the initial session to perfect the shape, color, and healed results."],
+      ["Semi-annual Touch-up", 200, 60, null, "A maintenance appointment recommended approximately every 6 months to refresh color, definition, and the overall appearance of your brows as the pigment gradually fades over time."],
+      ["Yearly Touch-up", 250, 60, null, "A maintenance appointment recommended approximately 12–20 months after your initial service to refresh faded pigment, restore definition, and maintain the overall appearance of your brows."],
+    ],
+  },
+  {
     name: "Lash Extension",
     slug: "lash-extension",
     eyebrow: "Full sets & finishing touches",
     services: [
-      ["Classic Full Set", 149, 90, null, "One extension per natural lash for clean length, soft fullness, and an elegant everyday finish."],
-      ["Hybrid Full Set", 179, 90, null, "A balanced blend of classic lashes and lightweight volume fans for soft texture and added dimension."],
-      ["Wet Look Full Set", 169, 90, null, "Glossy, defined lash spikes create a dark, wispy, mascara-like finish without heavy volume."],
-      ["Volume Full Set", 199, 120, null, "Lightweight volume fans add airy density, depth, and a fuller glamorous finish."],
-      ["Anime / Medusa Full Set", 179, 120, "from", "Strategic spikes and wispy texture create a lifted, doll-like statement look. Reference photo recommended."],
-      ["Lash Removal without New Set", 30, 30, null, "Gentle professional removal designed to protect the health of your natural lashes."],
-      ["Lash Removal + New Set", 15, 30, null, "Safe removal of your existing extensions before applying a fresh full set."],
-      ["Add-on Wispy", 15, 15, null, "Soft textured spikes add extra movement, definition, and a touch of drama to your set."],
+      ["Classic Full Set", 149, 90, null, "A natural, clean, and elegant look. Each natural lash is enhanced with one extension to add length, definition, and soft fullness while keeping the lashes lightweight and comfortable—perfect for a polished “your lashes but better” look."],
+      ["Hybrid Full Set", 179, 90, null, "The perfect balance between natural and full. Classic extensions and lightweight volume fans create added texture, dimension, and soft fullness while remaining elegant and effortless."],
+      ["Wet Look Full Set", 169, 90, null, "A sleek, glossy, and defined style that resembles freshly coated lashes. Lightweight closed fans create a dark, wispy, mascara-like finish without the heaviness of a full-volume set."],
+      ["Volume Full Set", 199, 120, null, "A fuller, softer, and more dramatic look created with lightweight volume fans. This set adds density, depth, and fluffy fullness while remaining lightweight and comfortable."],
+      ["Anime / Medusa Full Set", 179, 120, "from", "A bold, dramatic style inspired by anime lashes, with strategically placed spikes and wispy texture for a unique effect. Designed to create larger-looking, lifted, doll-like eyes with a sharp yet feminine finish."],
+      ["Lash Removal without New Set", 30, 30, null, "Gentle, professional removal of lash extensions while protecting your natural lashes."],
+      ["Lash Removal + New Set", 15, 30, null, "Removal of existing lash extensions followed by a fresh full set."],
+      ["Add-on Wispy", 15, 15, null, "Add soft, textured wispy spikes for extra texture and a little more drama to your set."],
     ],
   },
   {
@@ -25,15 +39,15 @@ const categories = [
     slug: "lash-refill",
     eyebrow: "Maintain your signature set",
     services: [
-      ["Classic Refill · 2 Weeks", 75, 60],
-      ["Classic Refill · 3 Weeks", 95, 60],
-      ["Hybrid Refill · 2 Weeks", 90, 60],
-      ["Hybrid Refill · 3 Weeks", 110, 75],
-      ["Wet Look Refill · 2 Weeks", 85, 60],
-      ["Wet Look Refill · 3 Weeks", 105, 60],
-      ["Volume Refill · 2 Weeks", 100, 75],
-      ["Volume Refill · 3 Weeks", 130, 90],
-      ["Anime Lash Refill", 120, 90, "from"],
+      ["Classic Refill · 2 Weeks", 75, 60, null, "For clients returning within 2 weeks. This service fills in grown-out and shed lashes to refresh your set and maintain a full, natural-looking appearance."],
+      ["Classic Refill · 3 Weeks", 95, 60, null, "Recommended for clients returning within 3 weeks. This service refreshes your existing Classic set by replacing grown-out and shed extensions for a clean, natural look."],
+      ["Hybrid Refill · 2 Weeks", 90, 60, null, "Recommended for clients returning within 2 weeks. This service replaces grown-out and shed extensions while restoring fullness and maintaining a soft, textured look."],
+      ["Hybrid Refill · 3 Weeks", 110, 75, null, "Recommended within 15–21 days of your previous appointment. This maintenance service restores fullness and keeps your Hybrid set soft and textured."],
+      ["Wet Look Refill · 2 Weeks", 85, 60, null, "Recommended within 8–14 days of your previous appointment. This service replaces grown-out and shed extensions while maintaining the signature sleek, defined appearance."],
+      ["Wet Look Refill · 3 Weeks", 105, 60, null, "Recommended within 15–21 days of your previous appointment. This service restores fullness and maintains the signature sleek, defined appearance."],
+      ["Volume Refill · 2 Weeks", 100, 75, null, "Recommended within 8–14 days of your previous appointment. This service restores fullness and maintains a soft, full, and fluffy look."],
+      ["Volume Refill · 3 Weeks", 130, 90, null, "Recommended within 15–21 days of your previous appointment. This service restores fullness and maintains a soft, full, and fluffy look."],
+      ["Anime Lash Refill", 120, 90, "from", "A refill for your Anime set, replacing grown-out and shed extensions while maintaining the signature spiky, wispy look. Perfect for keeping your lashes full, clean, and defined."],
     ],
   },
   {
@@ -41,11 +55,11 @@ const categories = [
     slug: "brows-service",
     eyebrow: "Shape, lift & definition",
     services: [
-      ["Brow Wax", 15, 15],
-      ["Brow Wax & Shaping", 30, 30],
-      ["Brow Lamination & Shaping", 90, 60],
-      ["Brow Lamination & Tint", 115, 60],
-      ["Brow Tint & Shaping", 45, 30],
+      ["Brow Wax", 15, 15, null, "Professional brow waxing to remove unwanted hair and clean up the brows, leaving them neat, smooth, and defined."],
+      ["Brow Wax & Shaping", 30, 30, null, "Detailed brow mapping creates a balanced, customized shape based on your natural features, followed by professional waxing to remove unwanted hair and define the brows."],
+      ["Brow Lamination & Shaping", 90, 60, null, "A brow styling treatment using premium-quality products to smooth and lift the natural brow hairs, creating a fuller, more defined, and polished look while enhancing your natural brow shape."],
+      ["Brow Lamination & Tint", 115, 60, null, "A brow styling treatment using premium-quality products to smooth, lift, and shape the natural brow hairs, combined with a custom tint to enhance color, definition, and fullness. Includes brow mapping and wax clean-up."],
+      ["Brow Tint & Shaping", 45, 30, null, "A custom brow tint paired with professional brow mapping and shaping to enhance your natural brow color, definition, and overall shape. Includes brow mapping and wax clean-up."],
     ],
   },
   {
@@ -58,25 +72,11 @@ const categories = [
       ["Lash Tint · Lower Lashes", 20, 20],
     ],
   },
-  {
-    name: "Permanent Makeup",
-    slug: "permanent-makeup",
-    eyebrow: "Long-lasting brow artistry",
-    services: [
-      ["Consultation", 0, 5],
-      ["Nano Hairstroke Brows", 750, 180],
-      ["Ombré Brows / Shading Brows", 550, 180],
-      ["Combo Brows · Hairstroke & Shading", 650, 180],
-      ["6–8 Week Touch-up", 150, 60],
-      ["Semi-annual Touch-up", 200, 60],
-      ["Yearly Touch-up", 250, 60],
-    ],
-  },
 ];
 
 const formatPrice = (price, mode) => {
-  if (price === 0) return "Complimentary";
-  return `${mode === "from" ? "From " : ""}$${price}`;
+  if (mode === "from") return `From $${price}`;
+  return `$${price.toFixed(2)}`;
 };
 
 export default function ServiceMenu() {

@@ -34,7 +34,13 @@ const items = [
 
 export default function MobileDock() {
   const pathname = usePathname();
-  const activeIndex = items.findIndex((item) => !item.external && item.href === pathname);
+  // `trailingSlash: true` makes deployed paths look like `/services/`, while
+  // the dock items use `/services`. Normalize both forms so the active pill
+  // remains mounted and can transition between tabs during client navigation.
+  const normalizedPathname = pathname === "/" ? pathname : pathname.replace(/\/+$/, "");
+  const activeIndex = items.findIndex(
+    (item) => !item.external && item.href === normalizedPathname,
+  );
 
   return (
     <nav aria-label="Quick navigation" className="fixed inset-x-4 bottom-4 z-40 lg:hidden">

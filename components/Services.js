@@ -12,6 +12,14 @@ import permanentMakeupImage from "@/images/banner/beautician-hand-doing-eyebrow-
 
 const services = [
   {
+    category: "Permanent Makeup",
+    slug: "permanent-makeup",
+    title: "Permanent Makeup",
+    detail: "Precise, natural-looking enhancements created to simplify your routine with lasting confidence.",
+    image: permanentMakeupImage,
+    position: "object-center",
+  },
+  {
     category: "Lash Extension",
     slug: "lash-extension",
     title: "Lash Extensions",
@@ -42,14 +50,6 @@ const services = [
     detail: "Personalized lash care and styling designed to enhance definition, balance, and everyday confidence.",
     image: lashServicesImage,
     position: "object-[center_42%]",
-  },
-  {
-    category: "Permanent Makeup",
-    slug: "permanent-makeup",
-    title: "Permanent Makeup",
-    detail: "Precise, natural-looking enhancements created to simplify your routine with lasting confidence.",
-    image: permanentMakeupImage,
-    position: "object-center",
   },
 ];
 

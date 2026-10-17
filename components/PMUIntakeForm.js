@@ -43,7 +43,7 @@ export default function PMUIntakeForm() {
 
       <div className="relative mx-auto max-w-[1240px] px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-32">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
-          <div className="lg:self-start">
+          <div className="lg:sticky lg:top-8 lg:self-start">
             <div className="flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#DAA755]">
               <span className="service-ornament-line" aria-hidden="true" />
               PMU client intake

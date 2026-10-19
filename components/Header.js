@@ -12,7 +12,7 @@ const leftNavigation = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Policy", href: "/policy" },
+  { label: "Client Care", href: "/policy" },
 ];
 
 const rightNavigation = [

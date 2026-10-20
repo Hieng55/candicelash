@@ -173,7 +173,9 @@ export default function ServiceMenu() {
                 <div className="flex items-center justify-between gap-5 pl-9 sm:justify-end sm:pl-0">
                   <span className="font-forum text-[24px] text-[#9F6920] sm:min-w-[120px] sm:text-right sm:text-[27px]">{formatPrice(price, mode)}</span>
                   <a href={bookingUrl} target="_blank" rel="noopener noreferrer" aria-label={`Book ${name}`} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#9F6920]/22 text-[#9F6920] transition-all duration-300 hover:border-[#462506] hover:bg-[#462506] hover:text-[#F1DEA8]">
-                    <span aria-hidden="true">↗</span>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M8 16 16 8M10 8h6v6" />
+                    </svg>
                   </a>
                 </div>
               </article>

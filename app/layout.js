@@ -1,6 +1,7 @@
 import { Forum, Jost } from "next/font/google";
 import Header from "@/components/Header";
 import MobileDock from "@/components/MobileDock";
+import PromoPopup from "@/components/PromoPopup";
 import "./globals.css";
 
 const siteUrl = "https://candicelashandbrows.com";
@@ -127,6 +128,7 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd).replace(/</g, "\\u003c") }}
         />
+        <PromoPopup />
         <Header />
         {children}
         <MobileDock />

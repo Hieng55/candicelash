@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import ombreImage from "@/images/services/ombre.jpg";
 
 const bookingUrl = "https://www.nailzy.com/book/candicelashandbrows";
 
@@ -12,7 +14,7 @@ const categories = [
     services: [
       ["Consultation", 0, 5, null, "Not sure which brow style is right for you? Schedule a virtual consultation or send us a clear photo of your brows and face. We’ll review your features, discuss your desired look, and recommend the best brow shape and style for you."],
       ["Nano Hairstroke Brows", 750, 180, null, "A semi-permanent brow technique that creates fine, realistic hair-like strokes to mimic natural brow hairs. Each stroke follows the natural direction and shape of your brows for a soft, defined result."],
-      ["Ombré Brows / Shading Brows", 550, 180, null, "A semi-permanent technique that creates soft, powdery brows with a smooth gradient effect. It gives the appearance of filled-in brows while remaining natural and elegant, and is suitable for all skin types, including oily skin."],
+      ["Ombré Brows / Shading Brows", 550, 180, null, "A semi-permanent technique that creates soft, powdery brows with a smooth gradient effect. It gives the appearance of filled-in brows while remaining natural and elegant, and is suitable for all skin types, including oily skin.", ombreImage],
       ["Combo Brows · Hairstroke & Shading", 650, 180, null, "A combination of realistic hairstrokes and ombré shading for natural, defined, and long-lasting brows. This method blends individual strokes with added depth and dimension for a beautifully full result."],
       ["6–8 Week Touch-up", 150, 60, null, "A follow-up appointment recommended 6–8 weeks after the initial session to perfect the shape, color, and healed results."],
       ["Semi-annual Touch-up", 200, 60, null, "A maintenance appointment recommended approximately every 6 months to refresh color, definition, and the overall appearance of your brows as the pigment gradually fades over time."],
@@ -81,6 +83,7 @@ const formatPrice = (price, mode) => {
 
 export default function ServiceMenu() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isImageOpen, setIsImageOpen] = useState(false);
   const category = categories[activeIndex];
 
   useEffect(() => {
@@ -99,6 +102,23 @@ export default function ServiceMenu() {
     window.addEventListener("hashchange", selectCategoryFromHash);
     return () => window.removeEventListener("hashchange", selectCategoryFromHash);
   }, []);
+
+  useEffect(() => {
+    if (!isImageOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setIsImageOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isImageOpen]);
 
   const selectCategory = (index) => {
     setActiveIndex(index);
@@ -132,14 +152,21 @@ export default function ServiceMenu() {
           </div>
 
           <div className="divide-y divide-[#9F6920]/12 px-4 sm:px-7">
-            {category.services.map(([name, price, duration, mode, description], index) => (
+            {category.services.map(([name, price, duration, mode, description, image], index) => (
               <article key={name} className="group grid gap-4 px-2 py-6 sm:grid-cols-[1fr_auto] sm:items-center sm:px-3 sm:py-7">
                 <div className="flex min-w-0 gap-4 sm:gap-5">
                   <span className="mt-1 font-forum text-[16px] text-[#9F6920]/38">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <h3 className="font-forum text-[24px] leading-tight transition-colors group-hover:text-[#9F6920] sm:text-[27px]">{name}</h3>
-                    {description && <p className="mt-2 max-w-[650px] text-[14px] leading-6 text-[#462506]/62 sm:text-[15px]">{description}</p>}
-                    <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#462506]/45">{duration} minutes</p>
+                  <div className={`min-w-0 flex-1 ${image ? "grid gap-5 sm:grid-cols-[132px_1fr] sm:items-center" : ""}`}>
+                    {image && (
+                      <button type="button" onClick={() => setIsImageOpen(true)} aria-label={`View larger ${name} results`} className="relative aspect-[4/5] w-full max-w-[260px] cursor-zoom-in overflow-hidden rounded-[18px] border border-[#9F6920]/15 bg-[#EFE1C8] shadow-[0_14px_34px_rgba(70,37,6,0.12)] transition duration-300 hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(70,37,6,0.2)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9F6920] sm:max-w-none">
+                        <Image src={image} alt={`${name} results: original, first session, and healed brows`} fill sizes="(max-width: 639px) 260px, 132px" className="object-cover" />
+                      </button>
+                    )}
+                    <div>
+                      <h3 className="font-forum text-[24px] leading-tight transition-colors group-hover:text-[#9F6920] sm:text-[27px]">{name}</h3>
+                      {description && <p className="mt-2 max-w-[650px] text-[14px] leading-6 text-[#462506]/62 sm:text-[15px]">{description}</p>}
+                      <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#462506]/45">{duration} minutes</p>
+                    </div>
                   </div>
                 </div>
 
@@ -156,6 +183,19 @@ export default function ServiceMenu() {
 
         <p className="mt-7 text-center text-[12px] leading-6 text-[#462506]/48">Prices and availability are subject to change. Final appointment details are confirmed through Nailzy.</p>
       </div>
+
+      {isImageOpen && (
+        <div role="dialog" aria-modal="true" aria-label="Ombré Brows results preview" className="fixed inset-0 z-[100] flex items-center justify-center bg-[#160B03]/90 p-4 backdrop-blur-sm sm:p-8" onClick={() => setIsImageOpen(false)}>
+          <div className="relative h-full w-full max-w-[820px]" onClick={(event) => event.stopPropagation()}>
+            <Image src={ombreImage} alt="Ombré Brows results: original, first session, and healed brows" fill priority sizes="(max-width: 860px) 100vw, 820px" className="object-contain" />
+            <button type="button" onClick={() => setIsImageOpen(false)} aria-label="Close image preview" autoFocus className="absolute right-0 top-0 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-[#462506]/85 text-white shadow-lg transition hover:rotate-90 hover:bg-[#9F6920] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-2 sm:top-2">
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 fill-none stroke-current" strokeWidth="1.8" strokeLinecap="round">
+                <path d="M6 6l12 12M18 6 6 18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

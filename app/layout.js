@@ -47,6 +47,7 @@ const businessJsonLd = {
   ],
   sameAs: [
     "https://www.instagram.com/candice.beautystudio",
+    "https://www.tiktok.com/@candicebeautystudio",
     "https://www.facebook.com/candicebeautystudioo/",
     "https://maps.google.com/?cid=791661076391546862",
   ],
@@ -89,6 +90,9 @@ export const metadata = {
   creator: "Candice Lash & Brows",
   publisher: "Candice Lash & Brows",
   category: "Beauty Salon",
+  verification: {
+    google: "fRNurB2y2boS3wN0mr89jsV80f_JKIWWmmgiIlMJuko",
+  },
   alternates: {
     canonical: "/",
   },

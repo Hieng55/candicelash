@@ -3,11 +3,11 @@ import SectionPage from "@/components/SectionPage";
 
 export const metadata = {
   title: "Contact & Visit",
-  description: "Contact Candice Beauty Studio, view studio hours, and get directions to our Alexandria location.",
+  description: "Contact Candice Beauty Studio, view studio hours, and get directions to the Alexandria location.",
   alternates: { canonical: "/contact/" },
   openGraph: {
     title: "Contact & Visit",
-    description: "Contact Candice Beauty Studio, view studio hours, and get directions to our Alexandria location.",
+    description: "Contact Candice Beauty Studio, view studio hours, and get directions to the Alexandria location.",
     url: "/contact/",
     images: ["/opengraph-image.jpg"],
   },

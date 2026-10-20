@@ -112,6 +112,7 @@ export default function AboutUs() {
                 {[
                   ["/icons/facebook.svg", "Facebook", "https://www.facebook.com/candicebeautystudioo/"],
                   ["https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/instagram/default.svg", "Instagram", "https://www.instagram.com/candice.beautystudio"],
+                  ["/icons/tiktok.svg", "TikTok", "https://www.tiktok.com/@candicebeautystudio"],
                   ["/icons/google-maps.svg", "Google Maps", "https://maps.google.com/?cid=791661076391546862"],
                 ].map(([icon, label, href]) => (
                   <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${label}`} title={label} className="group flex h-9 w-9 items-center justify-center rounded-full border border-[#9F6920]/20 bg-white/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#DAA755] hover:bg-white">

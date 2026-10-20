@@ -3,7 +3,7 @@ import candiceLogo from "@/images/logo.png";
 
 const pageLinks = [
   ["Home", "/"],
-  ["About us", "/about"],
+  ["About me", "/about"],
   ["Services", "/services"],
   ["Client Care", "/policy"],
   ["Gallery", "/gallery"],
@@ -13,6 +13,7 @@ const pageLinks = [
 
 const socialLinks = [
   ["Instagram", "https://www.instagram.com/candice.beautystudio"],
+  ["TikTok", "https://www.tiktok.com/@candicebeautystudio"],
   ["Facebook", "https://www.facebook.com/candicebeautystudioo/"],
   ["Google Maps", "https://maps.google.com/?cid=791661076391546862"],
 ];

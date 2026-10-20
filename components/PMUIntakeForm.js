@@ -148,7 +148,7 @@ export default function PMUIntakeForm() {
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok || !result.ok) {
-        throw new Error(result.message || "We could not send your form. Please try again.");
+        throw new Error(result.message || "Your form could not be sent. Please try again.");
       }
 
       form.reset();
@@ -157,7 +157,7 @@ export default function PMUIntakeForm() {
       setSubmitMessage("Thank you. Your PMU intake form was sent to Candice Beauty Studio.");
     } catch (error) {
       setSubmitState("error");
-      setSubmitMessage(error.message || "We could not send your form. Please try again or call the studio.");
+      setSubmitMessage(error.message || "Your form could not be sent. Please try again or call the studio.");
     }
   };
 
@@ -174,7 +174,7 @@ export default function PMUIntakeForm() {
               PMU client intake
             </div>
             <h2 className="mt-6 font-forum text-[45px] leading-[0.98] sm:text-[58px] lg:text-[66px]">
-              Let us prepare for
+              Let me prepare for
               <span className="mt-2 block italic text-[#E9C579]">your best result.</span>
             </h2>
             <p className="mt-7 max-w-[430px] text-[15px] leading-7 text-[#F7EED7]/62">

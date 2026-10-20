@@ -12,7 +12,7 @@ const categories = [
     slug: "permanent-makeup",
     eyebrow: "Long-lasting brow artistry",
     services: [
-      ["Consultation", 0, 5, null, "Not sure which brow style is right for you? Schedule a virtual consultation or send us a clear photo of your brows and face. We’ll review your features, discuss your desired look, and recommend the best brow shape and style for you."],
+      ["Consultation", 0, 5, null, "Not sure which brow style is right for you? Schedule a virtual consultation or send me a clear photo of your brows and face. I’ll review your features, discuss your desired look, and recommend the best brow shape and style for you."],
       ["Nano Hairstroke Brows", 750, 180, null, "A semi-permanent brow technique that creates fine, realistic hair-like strokes to mimic natural brow hairs. Each stroke follows the natural direction and shape of your brows for a soft, defined result."],
       ["Ombré Brows / Shading Brows", 550, 180, null, "A semi-permanent technique that creates soft, powdery brows with a smooth gradient effect. It gives the appearance of filled-in brows while remaining natural and elegant, and is suitable for all skin types, including oily skin.", ombreImage],
       ["Combo Brows · Hairstroke & Shading", 650, 180, null, "A combination of realistic hairstrokes and ombré shading for natural, defined, and long-lasting brows. This method blends individual strokes with added depth and dimension for a beautifully full result."],

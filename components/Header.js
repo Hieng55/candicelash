@@ -10,7 +10,7 @@ import candiceLogo from "@/images/logo.png";
 
 const leftNavigation = [
   { label: "Home", href: "/" },
-  { label: "About us", href: "/about" },
+  { label: "About me", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Client Care", href: "/policy" },
 ];

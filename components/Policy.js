@@ -73,7 +73,7 @@ export default function Policy() {
             <span className="mt-2 block italic text-[#9F6920]">your beautiful results.</span>
           </h2>
           <p className="mx-auto mt-7 max-w-[650px] text-[15px] leading-7 text-[#462506]/68 sm:text-[16px]">
-            Please review the guidance for your selected service before arriving. Thoughtful preparation helps us create the best possible result for you.
+            Please review the guidance for your selected service before arriving. Thoughtful preparation helps me create the best possible result for you.
           </p>
         </div>
 
@@ -108,7 +108,7 @@ export default function Policy() {
         <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[26px] bg-[#351A07] px-6 py-7 text-center text-[#F7EED7] sm:flex-row sm:px-8 sm:text-left">
           <div>
             <p className="font-forum text-[26px]">Still have a question?</p>
-            <p className="mt-1 text-[14px] text-[#F7EED7]/62">Contact Candice before your appointment and we will be happy to help.</p>
+            <p className="mt-1 text-[14px] text-[#F7EED7]/62">Contact Candice before your appointment if you need any help.</p>
           </div>
           <a href="tel:+14026863390" className="shrink-0 rounded-full border border-[#E9C579]/45 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E9C579] transition-colors hover:bg-[#E9C579] hover:text-[#351A07]">
             Call (402) 686-3390

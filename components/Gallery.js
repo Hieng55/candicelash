@@ -3,16 +3,16 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const instagramPosts = [
-  "https://www.instagram.com/p/DeAcqtmILNP/",
-  "https://www.instagram.com/p/DdbXZwgxFqT/",
-  "https://www.instagram.com/p/DekdH4EoI-B/",
-  "https://www.instagram.com/p/DeSgTyjI4kq/",
-  "https://www.instagram.com/p/DeKQPBbRr13/",
-  "https://www.instagram.com/p/Dd1RvAGxn2C/",
+const tiktokVideos = [
+  { id: "7697373768913571085", title: "Natural lash lift transformation" },
+  { id: "7696979630523239694", title: "Custom anime lash set" },
+  { id: "7696575196639120653", title: "Full and fluffy volume lashes" },
+  { id: "7694786549464009998", title: "Lash therapy at Candice Beauty Studio" },
+  { id: "7694294779932314893", title: "Soft and fluffy wispy lashes" },
+  { id: "7693540527999962382", title: "Anime lash set transformation" },
 ];
 
-const getEmbedUrl = (url) => `${url.replace(/^http:/, "https:").replace(/\/$/, "")}/embed/`;
+const getTikTokPlayerUrl = (id) => `https://www.tiktok.com/player/v1/${id}?embed_from=oembed&music_info=1&description=1&autoplay=0&muted=1`;
 
 export default function Gallery() {
   const sectionRef = useRef(null);
@@ -57,25 +57,24 @@ export default function Gallery() {
 
           <div data-gallery-intro className="max-w-[420px] lg:justify-self-end">
             <p className="text-[15px] leading-7 text-[#462506]/68">
-              Explore recent lash, brow, and beauty transformations from Candice Beauty Studio.
+              Explore recent lash, brow, and beauty transformations from Candice Beauty Studio on TikTok.
             </p>
-            <a href="https://www.instagram.com/candice.beautystudio" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-3 border-b border-[#9F6920]/35 pb-1.5 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#9F6920] transition-all duration-300 hover:gap-4 hover:border-[#9F6920] hover:text-[#462506]">
-              Follow on Instagram <span aria-hidden="true">↗</span>
+            <a href="https://www.tiktok.com/@candicebeautystudio" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-3 border-b border-[#9F6920]/35 pb-1.5 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#9F6920] transition-all duration-300 hover:gap-4 hover:border-[#9F6920] hover:text-[#462506]">
+              Follow on TikTok <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
 
         <div className="app-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:mt-16 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
-          {instagramPosts.map((postUrl, index) => (
-            <article data-gallery-card key={postUrl} className="group relative w-[86vw] max-w-[380px] shrink-0 snap-center overflow-hidden rounded-[28px] border border-[#9F6920]/16 bg-white shadow-[0_24px_60px_rgba(70,37,6,0.12)] sm:w-[52vw] sm:max-w-none lg:w-auto">
+          {tiktokVideos.map(({ id, title }) => (
+            <article data-gallery-card key={id} className="relative aspect-[9/16] w-[86vw] max-w-[380px] shrink-0 snap-center overflow-hidden rounded-[28px] border border-[#9F6920]/16 bg-black shadow-[0_24px_60px_rgba(70,37,6,0.12)] sm:w-[52vw] sm:max-w-none lg:w-auto">
               <iframe
-                src={getEmbedUrl(postUrl)}
-                title={`Instagram gallery post ${index + 1}`}
+                src={getTikTokPlayerUrl(id)}
+                title={`TikTok video: ${title}`}
                 loading="lazy"
-                scrolling="no"
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                className="block h-[610px] w-full border-0 bg-white sm:h-[640px] lg:h-[610px]"
+                className="absolute inset-0 h-full w-full border-0"
               />
             </article>
           ))}

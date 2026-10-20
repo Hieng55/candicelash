@@ -85,7 +85,7 @@ export default function Services() {
         <div className="mx-auto max-w-[720px] text-center">
           <div data-services-intro className="flex items-center justify-center gap-5 text-[12px] font-semibold uppercase tracking-[0.3em] text-[#DAA755]">
             <span className="luxury-line luxury-line-left max-w-[76px]" aria-hidden="true" />
-            Our expertise
+            My expertise
             <span className="luxury-line luxury-line-right max-w-[76px]" aria-hidden="true" />
           </div>
           <h2 data-services-intro className="mt-6 font-forum text-[44px] leading-[0.98] sm:mt-7 sm:text-[56px] lg:text-[68px]">

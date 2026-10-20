@@ -122,7 +122,7 @@ export default function Reviews() {
               Thoughtful artistry, a calming studio, and an experience designed to make every client feel seen.
             </p>
             <a href="https://maps.google.com/?cid=791661076391546862" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-3 border-b border-[#E9C579]/45 pb-1.5 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#E9C579] transition-all duration-300 hover:gap-4 hover:border-[#E9C579] hover:text-white">
-              Visit us on Google <span aria-hidden="true">↗</span>
+              View my reviews on Google <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>

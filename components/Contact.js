@@ -6,6 +6,11 @@ import PMUIntakeForm from "@/components/PMUIntakeForm";
 
 const bookingUrl = "https://www.nailzy.com/book/candicelashandbrows";
 const directionsUrl = "https://maps.google.com/?cid=791661076391546862";
+const socialLinks = [
+  ["/icons/facebook.svg", "Facebook", "https://www.facebook.com/candicebeautystudioo/"],
+  ["https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/instagram/default.svg", "Instagram", "https://www.instagram.com/candice.beautystudio"],
+  ["/icons/tiktok.svg", "TikTok", "https://www.tiktok.com/@candicebeautystudio"],
+];
 
 export default function Contact() {
   const sectionRef = useRef(null);
@@ -53,7 +58,7 @@ export default function Contact() {
 
             <div data-contact-copy className="mt-10 grid gap-px overflow-hidden rounded-[22px] border border-[#9F6920]/16 bg-[#9F6920]/16 sm:grid-cols-2">
               <a href={directionsUrl} target="_blank" rel="noopener noreferrer" className="group bg-white/65 p-6 transition-colors duration-300 hover:bg-white">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#9F6920]">Find us</span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#9F6920]">Find the studio</span>
                 <address className="mt-3 font-forum text-[20px] not-italic leading-7 text-[#462506]">
                   2465 Mandeville Lane<br />Unit 240, Suite 31<br />Alexandria, VA 22314
                 </address>
@@ -77,7 +82,7 @@ export default function Contact() {
                 <span className="luxury-button-icon relative z-10" aria-hidden="true">↗</span>
               </a>
               <a href="tel:+14026863390" className="luxury-button luxury-button-contact group w-full sm:w-auto" aria-label="Call Candice Beauty Studio at 402-686-3390">
-                <span className="relative z-10">Call us</span>
+                <span className="relative z-10">Call Candice</span>
                 <span className="luxury-button-icon relative z-10" aria-hidden="true">→</span>
               </a>
             </div>
@@ -85,6 +90,17 @@ export default function Contact() {
             <a data-contact-copy href="tel:+14026863390" className="mt-7 inline-block font-forum text-[25px] text-[#9F6920] transition-colors hover:text-[#462506]">
               (402) 686-3390
             </a>
+
+            <div data-contact-copy className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#9F6920]">Follow my work</span>
+              <div className="flex items-center gap-3">
+                {socialLinks.map(([icon, label, href]) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Open Candice Beauty Studio on ${label}`} title={label} className="group flex h-10 w-10 items-center justify-center rounded-full border border-[#9F6920]/20 bg-white/65 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#DAA755] hover:bg-white">
+                    <img src={icon} alt="" aria-hidden="true" className="h-[20px] w-[20px] object-contain transition-transform duration-300 group-hover:scale-110" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

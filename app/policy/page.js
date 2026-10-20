@@ -7,7 +7,7 @@ export const metadata = {
   alternates: { canonical: "/policy/" },
   openGraph: {
     title: "Client Care",
-    description: "Prepare for your PMU or lash appointment and protect your results with our care guidance.",
+    description: "Prepare for your PMU or lash appointment and protect your results with Candice's care guidance.",
     url: "/policy/",
     images: ["/opengraph-image.jpg"],
   },

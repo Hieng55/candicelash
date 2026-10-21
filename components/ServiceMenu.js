@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ombreImage from "@/images/services/ombre.jpg";
+import lashLiftTintImage from "@/images/services/menu/lasher.png";
+import PMUIntakeForm from "@/components/PMUIntakeForm";
 
 const bookingUrl = "https://www.nailzy.com/book/candicelashandbrows";
 
@@ -70,7 +72,7 @@ const categories = [
     eyebrow: "Natural lash treatments",
     services: [
       ["Lash Lift", 95, 60],
-      ["Lash Lift and Tint", 105, 60],
+      ["Lash Lift and Tint", 105, 60, null, null, lashLiftTintImage],
       ["Lash Tint · Lower Lashes", 20, 20],
     ],
   },
@@ -83,7 +85,7 @@ const formatPrice = (price, mode) => {
 
 export default function ServiceMenu() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isImageOpen, setIsImageOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
   const category = categories[activeIndex];
 
   useEffect(() => {
@@ -104,11 +106,11 @@ export default function ServiceMenu() {
   }, []);
 
   useEffect(() => {
-    if (!isImageOpen) return;
+    if (!previewImage) return;
 
     const previousOverflow = document.body.style.overflow;
     const closeOnEscape = (event) => {
-      if (event.key === "Escape") setIsImageOpen(false);
+      if (event.key === "Escape") setPreviewImage(null);
     };
 
     document.body.style.overflow = "hidden";
@@ -118,7 +120,7 @@ export default function ServiceMenu() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", closeOnEscape);
     };
-  }, [isImageOpen]);
+  }, [previewImage]);
 
   const selectCategory = (index) => {
     setActiveIndex(index);
@@ -158,8 +160,8 @@ export default function ServiceMenu() {
                   <span className="mt-1 font-forum text-[16px] text-[#9F6920]/38">{String(index + 1).padStart(2, "0")}</span>
                   <div className={`min-w-0 flex-1 ${image ? "grid gap-5 sm:grid-cols-[132px_1fr] sm:items-center" : ""}`}>
                     {image && (
-                      <button type="button" onClick={() => setIsImageOpen(true)} aria-label={`View larger ${name} results`} className="relative aspect-[4/5] w-full max-w-[260px] cursor-zoom-in overflow-hidden rounded-[18px] border border-[#9F6920]/15 bg-[#EFE1C8] shadow-[0_14px_34px_rgba(70,37,6,0.12)] transition duration-300 hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(70,37,6,0.2)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9F6920] sm:max-w-none">
-                        <Image src={image} alt={`${name} results: original, first session, and healed brows`} fill sizes="(max-width: 639px) 260px, 132px" className="object-cover" />
+                      <button type="button" onClick={() => setPreviewImage({ src: image, name })} aria-label={`View larger ${name} result`} className="relative aspect-[4/5] w-full max-w-[260px] cursor-zoom-in overflow-hidden rounded-[18px] border border-[#9F6920]/15 bg-[#EFE1C8] shadow-[0_14px_34px_rgba(70,37,6,0.12)] transition duration-300 hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(70,37,6,0.2)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9F6920] sm:max-w-none">
+                        <Image src={image} alt={`${name} result`} fill sizes="(max-width: 639px) 260px, 132px" className="object-cover" />
                       </button>
                     )}
                     <div>
@@ -186,11 +188,17 @@ export default function ServiceMenu() {
         <p className="mt-7 text-center text-[12px] leading-6 text-[#462506]/48">Prices and availability are subject to change. Final appointment details are confirmed through Nailzy.</p>
       </div>
 
-      {isImageOpen && (
-        <div role="dialog" aria-modal="true" aria-label="Ombré Brows results preview" className="fixed inset-0 z-[100] flex items-center justify-center bg-[#160B03]/90 p-4 backdrop-blur-sm sm:p-8" onClick={() => setIsImageOpen(false)}>
+      {category.slug === "permanent-makeup" && (
+        <div className="mt-16 sm:mt-20 lg:mt-24">
+          <PMUIntakeForm />
+        </div>
+      )}
+
+      {previewImage && (
+        <div role="dialog" aria-modal="true" aria-label={`${previewImage.name} result preview`} className="fixed inset-0 z-[100] flex items-center justify-center bg-[#160B03]/90 p-4 backdrop-blur-sm sm:p-8" onClick={() => setPreviewImage(null)}>
           <div className="relative h-full w-full max-w-[820px]" onClick={(event) => event.stopPropagation()}>
-            <Image src={ombreImage} alt="Ombré Brows results: original, first session, and healed brows" fill priority sizes="(max-width: 860px) 100vw, 820px" className="object-contain" />
-            <button type="button" onClick={() => setIsImageOpen(false)} aria-label="Close image preview" autoFocus className="absolute right-0 top-0 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-[#462506]/85 text-white shadow-lg transition hover:rotate-90 hover:bg-[#9F6920] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-2 sm:top-2">
+            <Image src={previewImage.src} alt={`${previewImage.name} result`} fill priority sizes="(max-width: 860px) 100vw, 820px" className="object-contain" />
+            <button type="button" onClick={() => setPreviewImage(null)} aria-label="Close image preview" autoFocus className="absolute right-0 top-0 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-[#462506]/85 text-white shadow-lg transition hover:rotate-90 hover:bg-[#9F6920] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-2 sm:top-2">
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 fill-none stroke-current" strokeWidth="1.8" strokeLinecap="round">
                 <path d="M6 6l12 12M18 6 6 18" />
               </svg>

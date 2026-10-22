@@ -73,7 +73,18 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-5 pt-7 text-center sm:flex-row sm:text-left">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-[#F1DEA8]/48">© {new Date().getFullYear()} Candice Beauty Studio. All rights reserved.</p>
+          <p className="text-[11px] uppercase tracking-[0.18em] text-[#F1DEA8]/48">
+            © 2026 Candice Beauty Studio. All rights reserved. Designed and developed by{" "}
+            <a
+              href="https://tdtransactionsllc.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-[#E9C579]/80 transition-colors hover:text-[#E9C579]"
+            >
+              TD TRANSACTIONS LLC
+            </a>
+            .
+          </p>
           <a href="#" className="group inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E9C579]/80 transition-colors hover:text-[#E9C579]">
             Back to top
             <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E9C579]/25 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[#E9C579]" aria-hidden="true">↑</span>

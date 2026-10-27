@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ombreImage from "@/images/services/ombre.jpg";
+import nanoHairstrokeOmbreImage from "@/images/services/nanohairstoke & ombre.jpg";
 import lashLiftTintImage from "@/images/services/menu/lasher.png";
 import PMUIntakeForm from "@/components/PMUIntakeForm";
 
@@ -17,6 +18,7 @@ const categories = [
       ["Consultation", 0, 5, null, "Not sure which brow style is right for you? Schedule a virtual consultation or send me a clear photo of your brows and face. I’ll review your features, discuss your desired look, and recommend the best brow shape and style for you."],
       ["Nano Hairstroke Brows", 750, 180, null, "A semi-permanent brow technique that creates fine, realistic hair-like strokes to mimic natural brow hairs. Each stroke follows the natural direction and shape of your brows for a soft, defined result."],
       ["Ombré Brows / Shading Brows", 550, 180, null, "A semi-permanent technique that creates soft, powdery brows with a smooth gradient effect. It gives the appearance of filled-in brows while remaining natural and elegant, and is suitable for all skin types, including oily skin.", ombreImage],
+      ["Nano Hairstroke & Ombré Combo", 349, 180, null, "A signature combination of delicate nano hairstrokes and soft ombré shading for natural-looking texture, enhanced definition, and beautifully dimensional brows.", nanoHairstrokeOmbreImage],
       ["Combo Brows · Hairstroke & Shading", 650, 180, null, "A combination of realistic hairstrokes and ombré shading for natural, defined, and long-lasting brows. This method blends individual strokes with added depth and dimension for a beautifully full result."],
       ["6–8 Week Touch-up", 150, 60, null, "A follow-up appointment recommended 6–8 weeks after the initial session to perfect the shape, color, and healed results."],
       ["Semi-annual Touch-up", 200, 60, null, "A maintenance appointment recommended approximately every 6 months to refresh color, definition, and the overall appearance of your brows as the pigment gradually fades over time."],

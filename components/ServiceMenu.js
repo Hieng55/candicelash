@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import ombreImage from "@/images/services/ombre.jpg";
-import nanoHairstrokeOmbreImage from "@/images/services/nanohairstoke & ombre.jpg";
+import ombreImage from "@/images/services/ombre.png";
+import nanoHairstrokeOmbreImage from "@/images/services/nanohairstoke & ombre.png";
 import lashLiftTintImage from "@/images/services/menu/lasher.png";
 import PMUIntakeForm from "@/components/PMUIntakeForm";
 
@@ -162,7 +162,7 @@ export default function ServiceMenu() {
                   <span className="mt-1 font-forum text-[16px] text-[#9F6920]/38">{String(index + 1).padStart(2, "0")}</span>
                   <div className={`min-w-0 flex-1 ${image ? "grid gap-5 sm:grid-cols-[132px_1fr] sm:items-center" : ""}`}>
                     {image && (
-                      <button type="button" onClick={() => setPreviewImage({ src: image, name })} aria-label={`View larger ${name} result`} className="relative aspect-[4/5] w-full max-w-[260px] cursor-zoom-in overflow-hidden rounded-[18px] border border-[#9F6920]/15 bg-[#EFE1C8] shadow-[0_14px_34px_rgba(70,37,6,0.12)] transition duration-300 hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(70,37,6,0.2)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9F6920] sm:max-w-none">
+                      <button type="button" onClick={() => setPreviewImage({ src: image, name })} aria-label={`View larger ${name} result`} className="relative aspect-square w-full max-w-[260px] cursor-zoom-in overflow-hidden rounded-[18px] border border-[#9F6920]/15 bg-[#EFE1C8] shadow-[0_14px_34px_rgba(70,37,6,0.12)] transition duration-300 hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(70,37,6,0.2)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9F6920] sm:max-w-none">
                         <Image src={image} alt={`${name} result`} fill sizes="(max-width: 639px) 260px, 132px" className="object-cover" />
                       </button>
                     )}

@@ -74,7 +74,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-5 pt-7 text-center sm:flex-row sm:text-left">
           <p className="text-[11px] uppercase tracking-[0.18em] text-[#F1DEA8]/48">
-            © 2026 Candice Beauty Studio. All rights reserved. Designed and developed by{" "}
+            © 2026 Candice Beauty Studio. All rights reserved. Designed by{" "}
             <a
               href="https://tdtransactionsllc.com/"
               target="_blank"
@@ -82,6 +82,15 @@ export default function Footer() {
               className="font-semibold text-[#E9C579]/80 transition-colors hover:text-[#E9C579]"
             >
               TD TRANSACTIONS LLC
+            </a>
+            {" "}and developed by{" "}
+            <a
+              href="https://webs4v.vn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-[#E9C579]/80 transition-colors hover:text-[#E9C579]"
+            >
+              Webs4V
             </a>
             .
           </p>

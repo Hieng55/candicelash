@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import promoImage from "@/images/popup/POST AD (6) (1).jpg";
+import promoImage from "@/images/popup/1.jpg";
 
 export default function PromoPopup() {
   const [isOpen, setIsOpen] = useState(true);
@@ -30,7 +30,7 @@ export default function PromoPopup() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Thanksgiving season sale"
+      aria-label="Promotion"
       className="fixed inset-0 z-[200] flex items-center justify-center bg-[#160B03]/85 p-3 backdrop-blur-sm sm:p-6"
       onClick={() => setIsOpen(false)}
     >
@@ -40,7 +40,7 @@ export default function PromoPopup() {
       >
         <Image
           src={promoImage}
-          alt="Thanksgiving Season Sale: 20% off all services, November 1 through 26, 2026"
+          alt="Candice Lash & Brows promotion"
           priority
           sizes="(max-width: 680px) 92vw, 620px"
           className="h-auto max-h-[calc(100dvh-24px)] w-auto max-w-full rounded-[20px] object-contain shadow-[0_30px_90px_rgba(0,0,0,0.5)] sm:max-h-[calc(100dvh-48px)]"

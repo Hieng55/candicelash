@@ -2,14 +2,17 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import promoImage1 from "@/images/popup/1.jpg";
 import promoImage2 from "@/images/popup/2.jpg";
 
 const promoImages = [promoImage1, promoImage2];
 
 export default function PromoPopup() {
+  const pathname = usePathname();
   const [activePopup, setActivePopup] = useState(0);
-  const isOpen = activePopup < promoImages.length;
+  const isBookingPage = pathname.startsWith("/booking");
+  const isOpen = !isBookingPage && activePopup < promoImages.length;
 
   const closeCurrentPopup = () => {
     setActivePopup((currentPopup) => currentPopup + 1);

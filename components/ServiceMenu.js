@@ -16,7 +16,7 @@ import browTintShapingImage from "@/images/services/menu/brow-tint-shaping.jpg";
 import lashLiftImage from "@/images/services/menu/lash-lift.jpg";
 import PMUIntakeForm from "@/components/PMUIntakeForm";
 
-const bookingUrl = "https://www.nailzy.com/book/candicelashandbrows";
+const bookingUrl = "/booking";
 
 const categories = [
   {

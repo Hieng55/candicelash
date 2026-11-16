@@ -16,7 +16,7 @@ const items = [
   },
   {
     label: "Book",
-    href: "https://www.nailzy.com/book/candicelashandbrows",
+    href: "/booking",
     external: true,
     icon: <><rect x="4" y="5" width="16" height="16" rx="3" /><path d="M8 3v4M16 3v4M4 10h16M8 14h3M8 17h6" /></>,
   },

@@ -19,7 +19,7 @@ const rightNavigation = [
   { label: "Gallery", href: "/gallery" },
   { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
-  { label: "Book now", href: "https://www.nailzy.com/book/candicelashandbrows", external: true },
+  { label: "Book now", href: "/booking", external: true },
 ];
 
 const navigation = [...leftNavigation, ...rightNavigation];

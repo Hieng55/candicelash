@@ -221,7 +221,7 @@ export default function Hero() {
                 <span className="relative z-10">Call now</span>
                 <span className="luxury-button-icon relative z-10" aria-hidden="true">→</span>
               </Link>
-              <Link href="https://www.nailzy.com/book/candicelashandbrows" target="_blank" rel="noopener noreferrer" className="luxury-button luxury-button-secondary group w-full sm:w-auto">
+              <Link href="/booking" target="_blank" rel="noopener noreferrer" className="luxury-button luxury-button-secondary group w-full sm:w-auto">
                 <span className="relative z-10">Book now</span>
                 <span className="luxury-button-icon relative z-10" aria-hidden="true">→</span>
               </Link>

@@ -32,7 +32,7 @@ export default function Footer() {
             <p className="mt-5 text-[16px] leading-8 text-[#F7EED7]/64">
               Bespoke lash, brow, and permanent makeup artistry created with intention in Alexandria, Virginia.
             </p>
-            <a href="https://www.nailzy.com/book/candicelashandbrows" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#E9C579] transition-all duration-300 hover:gap-4 hover:text-white">
+            <a href="/booking" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#E9C579] transition-all duration-300 hover:gap-4 hover:text-white">
               Reserve an appointment <span aria-hidden="true">↗</span>
             </a>
           </div>

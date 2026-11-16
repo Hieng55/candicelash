@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const bookingUrl = "https://www.nailzy.com/book/candicelashandbrows";
+const bookingUrl = "/booking";
 const directionsUrl = "https://maps.google.com/?cid=791661076391546862";
 const socialLinks = [
   ["/icons/facebook.svg", "Facebook", "https://www.facebook.com/candicebeautystudioo/"],

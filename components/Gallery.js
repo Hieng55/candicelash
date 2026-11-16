@@ -1,17 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Script from "next/script";
 import gsap from "gsap";
 
-const tiktokVideos = [
-  { id: "7703268443532971277", title: "Latest beauty transformation from Candice Beauty Studio" },
-  { id: "7702203947611655438", title: "Lash and brow artistry from Candice Beauty Studio" },
-  { id: "7701123686966889741", title: "Recent studio transformation from Candice Beauty Studio" },
-  { id: "7699924131365604621", title: "Beauty inspiration from Candice Beauty Studio" },
-  { id: "7706656432589999373", title: "Candice Beauty Studio transformation" },
-];
-
-const getTikTokPlayerUrl = (id) => `https://www.tiktok.com/player/v1/${id}?music_info=1&description=1&autoplay=0`;
+const tiktokProfileUrl = "https://www.tiktok.com/@candicebeautystudio";
 
 export default function Gallery() {
   const sectionRef = useRef(null);
@@ -38,6 +31,7 @@ export default function Gallery() {
 
   return (
     <section id="gallery" ref={sectionRef} className="relative overflow-hidden bg-[#F7EED7] py-20 text-[#462506] sm:py-24 lg:py-32">
+      <Script src="https://www.tiktok.com/embed.js" strategy="lazyOnload" />
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[430px] w-[430px] rounded-full bg-white/55 blur-[130px]" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-44 bottom-20 h-[420px] w-[420px] rounded-full bg-[#DAA755]/12 blur-[120px]" aria-hidden="true" />
 
@@ -64,19 +58,63 @@ export default function Gallery() {
           </div>
         </div>
 
-        <div className="app-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:mt-16 lg:grid lg:grid-cols-6 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
-          {tiktokVideos.map(({ id, title }, index) => (
-            <article data-gallery-card key={id} className={`relative aspect-[9/16] w-[86vw] max-w-[380px] shrink-0 snap-center overflow-hidden rounded-[28px] border border-[#9F6920]/16 bg-black shadow-[0_24px_60px_rgba(70,37,6,0.12)] sm:w-[52vw] sm:max-w-none lg:col-span-2 lg:w-auto ${index === 3 ? "lg:col-start-2" : ""}`}>
-              <iframe
-                src={getTikTokPlayerUrl(id)}
-                title={`TikTok video: ${title}`}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="absolute inset-0 h-full w-full border-0"
-              />
-            </article>
-          ))}
+        <div data-gallery-card className="relative mx-auto mt-12 max-w-[900px] overflow-visible rounded-[32px] border border-[#E9C579]/20 bg-[#351A07] p-3 shadow-[0_30px_80px_rgba(70,37,6,0.2)] sm:overflow-hidden sm:p-6 lg:mt-16 lg:p-8">
+          <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-[#DAA755]/12 blur-[80px]" aria-hidden="true" />
+          <div className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-white/[0.06] blur-[90px]" aria-hidden="true" />
+
+          <div className="relative mb-5 flex flex-col gap-4 px-2 pt-2 text-[#F7EED7] sm:mb-6 sm:flex-row sm:items-end sm:justify-between sm:px-1">
+            <div>
+              <div className="flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#E9C579]">
+                <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E9C579] opacity-50" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#E9C579]" />
+                </span>
+                Live from TikTok
+              </div>
+              <h3 className="mt-3 font-forum text-[30px] leading-tight sm:text-[38px]">
+                Fresh from the studio.
+              </h3>
+            </div>
+            <p className="max-w-[300px] text-[13px] leading-6 text-[#F7EED7]/60 sm:text-right">
+              New transformations appear here automatically whenever we post.
+            </p>
+          </div>
+
+          <div className="tiktok-profile-shell relative overflow-visible rounded-[22px] border border-white/10 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.28)] sm:overflow-hidden">
+            <blockquote
+              className="tiktok-embed !m-0 !min-w-full !max-w-full"
+              cite={tiktokProfileUrl}
+              data-unique-id="candicebeautystudio"
+              data-embed-from="oembed"
+              data-embed-type="creator"
+            >
+              <section className="flex min-h-[420px] items-center justify-center px-6 text-center">
+                <a
+                  href={tiktokProfileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#462506]"
+                >
+                  View @candicebeautystudio on TikTok
+                </a>
+              </section>
+            </blockquote>
+          </div>
+
+          <div className="relative mt-4 flex flex-col gap-3 px-2 pb-1 sm:flex-row sm:items-center sm:justify-between sm:px-1">
+            <p className="flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-[#F7EED7]/55">
+              <span className="text-[#E9C579]" aria-hidden="true">↔</span>
+              Swipe to explore our latest work
+            </p>
+            <a
+              href={tiktokProfileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-[#E9C579]/35 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E9C579] transition hover:border-[#E9C579] hover:bg-[#E9C579] hover:text-[#351A07]"
+            >
+              Follow @candicebeautystudio <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

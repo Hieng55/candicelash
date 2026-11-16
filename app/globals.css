@@ -199,6 +199,19 @@ body {
   display: none;
 }
 
+.tiktok-profile-shell,
+.tiktok-profile-shell .tiktok-embed,
+.tiktok-profile-shell iframe {
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
+}
+
+.tiktok-profile-shell iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  pointer-events: auto;
+}
+
 @keyframes service-panel-enter {
   from {
     opacity: 0;

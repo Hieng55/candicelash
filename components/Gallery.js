@@ -4,15 +4,14 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const tiktokVideos = [
-  { id: "7697373768913571085", title: "Natural lash lift transformation" },
-  { id: "7696979630523239694", title: "Custom anime lash set" },
-  { id: "7696575196639120653", title: "Full and fluffy volume lashes" },
-  { id: "7694786549464009998", title: "Lash therapy at Candice Beauty Studio" },
-  { id: "7694294779932314893", title: "Soft and fluffy wispy lashes" },
-  { id: "7693540527999962382", title: "Anime lash set transformation" },
+  { id: "7703268443532971277", title: "Latest beauty transformation from Candice Beauty Studio" },
+  { id: "7702203947611655438", title: "Lash and brow artistry from Candice Beauty Studio" },
+  { id: "7701123686966889741", title: "Recent studio transformation from Candice Beauty Studio" },
+  { id: "7699924131365604621", title: "Beauty inspiration from Candice Beauty Studio" },
+  { id: "7706656432589999373", title: "Candice Beauty Studio transformation" },
 ];
 
-const getTikTokPlayerUrl = (id) => `https://www.tiktok.com/player/v1/${id}?embed_from=oembed&music_info=1&description=1&autoplay=0&muted=1`;
+const getTikTokPlayerUrl = (id) => `https://www.tiktok.com/player/v1/${id}?music_info=1&description=1&autoplay=0`;
 
 export default function Gallery() {
   const sectionRef = useRef(null);
@@ -65,9 +64,9 @@ export default function Gallery() {
           </div>
         </div>
 
-        <div className="app-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:mt-16 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
-          {tiktokVideos.map(({ id, title }) => (
-            <article data-gallery-card key={id} className="relative aspect-[9/16] w-[86vw] max-w-[380px] shrink-0 snap-center overflow-hidden rounded-[28px] border border-[#9F6920]/16 bg-black shadow-[0_24px_60px_rgba(70,37,6,0.12)] sm:w-[52vw] sm:max-w-none lg:w-auto">
+        <div className="app-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:mt-16 lg:grid lg:grid-cols-6 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
+          {tiktokVideos.map(({ id, title }, index) => (
+            <article data-gallery-card key={id} className={`relative aspect-[9/16] w-[86vw] max-w-[380px] shrink-0 snap-center overflow-hidden rounded-[28px] border border-[#9F6920]/16 bg-black shadow-[0_24px_60px_rgba(70,37,6,0.12)] sm:w-[52vw] sm:max-w-none lg:col-span-2 lg:w-auto ${index === 3 ? "lg:col-start-2" : ""}`}>
               <iframe
                 src={getTikTokPlayerUrl(id)}
                 title={`TikTok video: ${title}`}

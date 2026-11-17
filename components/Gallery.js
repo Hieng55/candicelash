@@ -1,13 +1,42 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Script from "next/script";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 const tiktokProfileUrl = "https://www.tiktok.com/@candicebeautystudio";
 
+const artistryVideos = [
+  {
+    src: "/videos/artistry-01.mp4",
+    poster: "/posters/artistry-01.jpg",
+    title: "Ombré Brows",
+  },
+  {
+    src: "/videos/artistry-latest.mp4",
+    poster: "/posters/artistry-02.jpg",
+    title: "Latest Brow Transformation",
+  },
+  {
+    src: "/videos/artistry-03.mp4",
+    poster: "/posters/artistry-03.jpg",
+    title: "Nano Brows + Shading",
+  },
+  {
+    src: "/videos/artistry-04.mp4",
+    poster: "/posters/artistry-04.jpg",
+    title: "Hairstroke Brows",
+  },
+  {
+    src: "/videos/artistry-05.mp4",
+    poster: "/posters/artistry-05.jpg",
+    title: "Nano Hairstroke",
+  },
+];
+
 export default function Gallery() {
   const sectionRef = useRef(null);
+  const videoRefs = useRef([]);
+  const [activeVideo, setActiveVideo] = useState(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -29,9 +58,24 @@ export default function Gallery() {
     return () => observer.disconnect();
   }, []);
 
+  const playVideo = async (index) => {
+    const video = videoRefs.current[index];
+    if (!video) return;
+
+    videoRefs.current.forEach((item, itemIndex) => {
+      if (item && itemIndex !== index) item.pause();
+    });
+
+    video.muted = false;
+    try {
+      await video.play();
+    } catch {
+      setActiveVideo(null);
+    }
+  };
+
   return (
     <section id="gallery" ref={sectionRef} className="relative overflow-hidden bg-[#F7EED7] py-20 text-[#462506] sm:py-24 lg:py-32">
-      <Script src="https://www.tiktok.com/embed.js" strategy="lazyOnload" />
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[430px] w-[430px] rounded-full bg-white/55 blur-[130px]" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-44 bottom-20 h-[420px] w-[420px] rounded-full bg-[#DAA755]/12 blur-[120px]" aria-hidden="true" />
 
@@ -58,7 +102,7 @@ export default function Gallery() {
           </div>
         </div>
 
-        <div data-gallery-card className="relative mx-auto mt-12 max-w-[900px] overflow-visible rounded-[32px] border border-[#E9C579]/20 bg-[#351A07] p-3 shadow-[0_30px_80px_rgba(70,37,6,0.2)] sm:overflow-hidden sm:p-6 lg:mt-16 lg:p-8">
+        <div data-gallery-card className="relative mx-auto mt-12 max-w-[1240px] overflow-hidden rounded-[32px] border border-[#E9C579]/20 bg-[#351A07] p-3 shadow-[0_30px_80px_rgba(70,37,6,0.2)] sm:p-6 lg:mt-16 lg:p-8">
           <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-[#DAA755]/12 blur-[80px]" aria-hidden="true" />
           <div className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-white/[0.06] blur-[90px]" aria-hidden="true" />
 
@@ -69,42 +113,61 @@ export default function Gallery() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E9C579] opacity-50" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#E9C579]" />
                 </span>
-                Live from TikTok
+                Studio highlight
               </div>
               <h3 className="mt-3 font-forum text-[30px] leading-tight sm:text-[38px]">
                 Fresh from the studio.
               </h3>
             </div>
             <p className="max-w-[300px] text-[13px] leading-6 text-[#F7EED7]/60 sm:text-right">
-              New transformations appear here automatically whenever we post.
+              Tap any video to watch. Nothing plays or downloads in full until you choose it.
             </p>
           </div>
 
-          <div className="tiktok-profile-shell relative overflow-visible rounded-[22px] border border-white/10 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.28)] sm:overflow-hidden">
-            <blockquote
-              className="tiktok-embed !m-0 !min-w-full !max-w-full"
-              cite={tiktokProfileUrl}
-              data-unique-id="candicebeautystudio"
-              data-embed-from="oembed"
-              data-embed-type="creator"
-            >
-              <section className="flex min-h-[420px] items-center justify-center px-6 text-center">
-                <a
-                  href={tiktokProfileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#462506]"
+          <div className="grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {artistryVideos.map((item, index) => (
+              <article
+                key={item.src}
+                className="relative aspect-[9/16] w-full max-w-[320px] justify-self-center overflow-hidden rounded-[22px] border border-white/10 bg-[#180A02] shadow-[0_20px_50px_rgba(0,0,0,0.28)] xl:max-w-none"
+              >
+                <video
+                  ref={(node) => {
+                    videoRefs.current[index] = node;
+                  }}
+                  className="h-full w-full object-cover"
+                  controls={activeVideo === index}
+                  playsInline
+                  preload="none"
+                  poster={item.poster}
+                  aria-label={`${item.title} studio video`}
+                  onPlay={() => setActiveVideo(index)}
+                  onPause={() => setActiveVideo((current) => (current === index ? null : current))}
+                  onEnded={() => setActiveVideo(null)}
                 >
-                  View @candicebeautystudio on TikTok
-                </a>
-              </section>
-            </blockquote>
+                  <source src={item.src} type="video/mp4" />
+                  Your browser does not support HTML5 video.
+                </video>
+
+                {activeVideo !== index && (
+                  <button
+                    type="button"
+                    onClick={() => playVideo(index)}
+                    aria-label={`Play ${item.title} video with sound`}
+                    className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#E9C579]/75 bg-[#F7EED7]/90 text-[#462506] shadow-[0_12px_35px_rgba(20,9,2,0.38)] backdrop-blur-md transition duration-300 hover:scale-105 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F1DEA8]"
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="ml-1 h-6 w-6 fill-current">
+                      <path d="m8 5 11 7-11 7z" />
+                    </svg>
+                  </button>
+                )}
+              </article>
+            ))}
           </div>
 
           <div className="relative mt-4 flex flex-col gap-3 px-2 pb-1 sm:flex-row sm:items-center sm:justify-between sm:px-1">
             <p className="flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-[#F7EED7]/55">
               <span className="text-[#E9C579]" aria-hidden="true">↔</span>
-              Swipe to explore our latest work
+              Five studio videos · tap any one to play
             </p>
             <a
               href={tiktokProfileUrl}

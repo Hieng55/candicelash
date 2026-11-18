@@ -7,13 +7,11 @@ const tiktokProfileUrl = "https://www.tiktok.com/@candicebeautystudio";
 
 const artistryVideos = [
   {
-    src: "/videos/artistry-01.mp4",
-    poster: "/posters/artistry-01.jpg",
+    src: "/videos/artistry-new-01.mp4",
     title: "Ombré Brows",
   },
   {
-    src: "/videos/artistry-latest.mp4",
-    poster: "/posters/artistry-02.jpg",
+    src: "/videos/artistry-new-02.mp4",
     title: "Latest Brow Transformation",
   },
   {
@@ -137,7 +135,7 @@ export default function Gallery() {
                   className="h-full w-full object-cover"
                   controls={activeVideo === index}
                   playsInline
-                  preload="none"
+                  preload={item.poster ? "none" : "metadata"}
                   poster={item.poster}
                   aria-label={`${item.title} studio video`}
                   onPlay={() => setActiveVideo(index)}

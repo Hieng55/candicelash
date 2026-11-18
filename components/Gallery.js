@@ -7,11 +7,11 @@ const tiktokProfileUrl = "https://www.tiktok.com/@candicebeautystudio";
 
 const artistryVideos = [
   {
-    src: "/videos/artistry-new-01.mp4",
+    src: "/videos/artistry-new-02.mp4",
     title: "Ombré Brows",
   },
   {
-    src: "/videos/artistry-new-02.mp4",
+    src: "/videos/artistry-new-01.mp4",
     title: "Latest Brow Transformation",
   },
   {

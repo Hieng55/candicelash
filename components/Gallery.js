@@ -15,18 +15,15 @@ const artistryVideos = [
     title: "Latest Brow Transformation",
   },
   {
-    src: "/videos/artistry-03.mp4",
-    poster: "/posters/artistry-03.jpg",
+    src: "/videos/artistry-03.mp4?v=20261119-3",
     title: "Nano Brows + Shading",
   },
   {
-    src: "/videos/artistry-04.mp4",
-    poster: "/posters/artistry-04.jpg",
+    src: "/videos/artistry-04.mp4?v=20261119-3",
     title: "Hairstroke Brows",
   },
   {
-    src: "/videos/artistry-05.mp4",
-    poster: "/posters/artistry-05.jpg",
+    src: "/videos/artistry-05.mp4?v=20261119-3",
     title: "Nano Hairstroke",
   },
 ];

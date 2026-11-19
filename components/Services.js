@@ -142,6 +142,14 @@ export default function Services() {
             >
               <source src="/videos/lash-and-brows.mp4" type="video/mp4" />
             </video>
+            <Image
+              src={lashServicesImage}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 400px, 100vw"
+              aria-hidden="true"
+              className={`pointer-events-none z-[1] object-cover transition-opacity duration-300 ${isVideoPlaying ? "opacity-0" : "opacity-100"}`}
+            />
             <button
               type="button"
               onClick={toggleVideoPlayback}

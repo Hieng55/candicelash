@@ -135,6 +135,7 @@ export default function Services() {
               controls={showVideoControls}
               playsInline
               preload="metadata"
+              poster={lashServicesImage.src}
               aria-label="Candice Beauty Studio services and pricing video"
               onPlay={() => setIsVideoPlaying(true)}
               onPause={() => setIsVideoPlaying(false)}

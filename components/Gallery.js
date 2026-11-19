@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
+import ombreBrowsPoster from "@/images/banner/beautician-hand-doing-eyebrow-tattooing-female-brows-closeup-shot.webp";
+import browTransformationPoster from "@/images/services/brows.jpg";
+import nanoBrowsPoster from "@/images/services/menu/promotion-nano-brows.jpg";
+import hairstrokePoster from "@/images/services/menu/brow-lamination-tint.jpg";
+import nanoHairstrokePoster from "@/images/services/menu/brow-tint-shaping.jpg";
 
 const tiktokProfileUrl = "https://www.tiktok.com/@candicebeautystudio";
 
@@ -9,22 +15,27 @@ const artistryVideos = [
   {
     src: "/videos/artistry-01.mp4?v=20261119-2",
     title: "Ombré Brows",
+    poster: ombreBrowsPoster,
   },
   {
     src: "/videos/artistry-latest.mp4?v=20261119-2",
     title: "Latest Brow Transformation",
+    poster: browTransformationPoster,
   },
   {
     src: "/videos/artistry-03.mp4?v=20261119-3",
     title: "Nano Brows + Shading",
+    poster: nanoBrowsPoster,
   },
   {
     src: "/videos/artistry-04.mp4?v=20261119-3",
     title: "Hairstroke Brows",
+    poster: hairstrokePoster,
   },
   {
     src: "/videos/artistry-05.mp4?v=20261119-3",
     title: "Nano Hairstroke",
+    poster: nanoHairstrokePoster,
   },
 ];
 
@@ -133,7 +144,7 @@ export default function Gallery() {
                   controls={activeVideo === index}
                   playsInline
                   preload={item.poster ? "none" : "metadata"}
-                  poster={item.poster}
+                  poster={item.poster.src}
                   aria-label={`${item.title} studio video`}
                   onPlay={() => setActiveVideo(index)}
                   onPause={() => setActiveVideo((current) => (current === index ? null : current))}
@@ -142,6 +153,15 @@ export default function Gallery() {
                   <source src={item.src} type="video/mp4" />
                   Your browser does not support HTML5 video.
                 </video>
+
+                <Image
+                  src={item.poster}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1280px) 220px, (min-width: 640px) 50vw, 100vw"
+                  aria-hidden="true"
+                  className={`pointer-events-none object-cover transition-opacity duration-300 ${activeVideo === index ? "opacity-0" : "opacity-100"}`}
+                />
 
                 {activeVideo !== index && (
                   <button

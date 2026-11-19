@@ -3,11 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import ombreBrowsPoster from "@/images/banner/beautician-hand-doing-eyebrow-tattooing-female-brows-closeup-shot.webp";
-import browTransformationPoster from "@/images/services/brows.jpg";
-import nanoBrowsPoster from "@/images/services/menu/promotion-nano-brows.jpg";
-import hairstrokePoster from "@/images/services/menu/brow-lamination-tint.jpg";
-import nanoHairstrokePoster from "@/images/services/menu/brow-tint-shaping.jpg";
 
 const tiktokProfileUrl = "https://www.tiktok.com/@candicebeautystudio";
 
@@ -15,27 +10,27 @@ const artistryVideos = [
   {
     src: "/videos/artistry-01.mp4?v=20261119-2",
     title: "Ombré Brows",
-    poster: ombreBrowsPoster,
+    poster: "/images/studio-highlight/artistry-01.jpg",
   },
   {
     src: "/videos/artistry-latest.mp4?v=20261119-2",
     title: "Latest Brow Transformation",
-    poster: browTransformationPoster,
+    poster: "/images/studio-highlight/artistry-latest.jpg",
   },
   {
     src: "/videos/artistry-03.mp4?v=20261119-3",
     title: "Nano Brows + Shading",
-    poster: nanoBrowsPoster,
+    poster: "/images/studio-highlight/artistry-03.jpg",
   },
   {
     src: "/videos/artistry-04.mp4?v=20261119-3",
     title: "Hairstroke Brows",
-    poster: hairstrokePoster,
+    poster: "/images/studio-highlight/artistry-04.jpg",
   },
   {
     src: "/videos/artistry-05.mp4?v=20261119-3",
     title: "Nano Hairstroke",
-    poster: nanoHairstrokePoster,
+    poster: "/images/studio-highlight/artistry-05.jpg",
   },
 ];
 
@@ -144,7 +139,7 @@ export default function Gallery() {
                   controls={activeVideo === index}
                   playsInline
                   preload={item.poster ? "none" : "metadata"}
-                  poster={item.poster.src}
+                  poster={item.poster}
                   aria-label={`${item.title} studio video`}
                   onPlay={() => setActiveVideo(index)}
                   onPause={() => setActiveVideo((current) => (current === index ? null : current))}

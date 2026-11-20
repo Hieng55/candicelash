@@ -8,7 +8,7 @@ import lashLiftTintImage from "@/images/services/menu/lasher.png";
 import promotionNanoBrowsImage from "@/images/services/menu/promotion-nano-brows.jpg";
 import classicFullSetImage from "@/images/services/menu/classic-full-set.jpg";
 import hybridFullSetImage from "@/images/services/menu/hybrid-full-set.jpg";
-import wetLookFullSetImage from "@/images/services/menu/wet-look-full-set.jpg";
+import wetLookFullSetImage from "@/images/services/we look full set.jpg";
 import volumeFullSetImage from "@/images/services/menu/volume-full-set.jpg";
 import animeMedusaFullSetImage from "@/images/services/menu/anime-medusa-full-set.jpg";
 import browLaminationTintImage from "@/images/services/menu/brow-lamination-tint.jpg";

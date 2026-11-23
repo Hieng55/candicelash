@@ -12,7 +12,7 @@ import wetLookFullSetImage from "@/images/services/we look full set.jpg";
 import volumeFullSetImage from "@/images/services/menu/volume-full-set.jpg";
 import animeMedusaFullSetImage from "@/images/services/menu/anime-medusa-full-set.jpg";
 import browLaminationTintImage from "@/images/services/menu/brow-lamination-tint.jpg";
-import browTintShapingImage from "@/images/services/menu/brow-tint-shaping.jpg";
+import browTintShapingImage from "@/images/services/tint brows.jpg";
 import lashLiftImage from "@/images/services/menu/lash-lift.jpg";
 import PMUIntakeForm from "@/components/PMUIntakeForm";
 

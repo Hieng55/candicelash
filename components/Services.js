@@ -6,7 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import lashExtensionImage from "@/images/services/lash.jpg";
 import lashRefillImage from "@/images/banner/eyelash-extension-procedure-woman-s-eye-with-long-eyelashes-eyelashes-close-up-macro-selective-focus-tweezers-beautiful-girl-eyelash-extension-procedure.webp";
-import browsImage from "@/images/services/brows.jpg";
+import browsImage from "@/images/services/tint brows.jpg";
 import lashServicesImage from "@/images/services/lash service.webp";
 import permanentMakeupImage from "@/images/banner/beautician-hand-doing-eyebrow-tattooing-female-brows-closeup-shot.webp";
 
